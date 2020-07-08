@@ -6,7 +6,9 @@
 }
 
 a,
-a:hover {
+a:hover,
+i,
+i:hover {
   text-decoration: none;
   color: rgb(255, 255, 255);
 }
@@ -15,9 +17,16 @@ ul {
   list-style: none;
 }
 
+.fa, .checkbox{
+    cursor: pointer;
+}
+
 .light-background {
   position: fixed;
-  background-image: radial-gradient(rgb(107, 234, 243) 5%, rgb(123, 158, 253) 60%);
+  background-image: linear-gradient(
+    rgb(123, 158, 253) 5%,
+    rgb(107, 182, 243) 60%
+  );
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -64,7 +73,7 @@ footer {
 .links li {
   display: inline;
   font-size: 3rem;
-  letter-spacing: 3rem;
+  letter-spacing: 4rem;
 }
 .links li:hover {
   text-shadow: 3px 3px rgb(33, 24, 155);
@@ -76,9 +85,9 @@ footer {
   margin-top: 0.5rem;
 }
 
-.new-task{
-    margin-top: 3rem;
-    margin-bottom: 2.5rem;
+.new-task {
+  margin-top: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .input-group-text {

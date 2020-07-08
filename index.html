@@ -25,9 +25,9 @@
         <main class="container">
             <!-- NEW TASK-->
             <div class="input-group new-task">
-                <input type="text" class="form-control" placeholder="New Task">
+                <input type="text" class="form-control" placeholder="New Task" required>
                 <div class="input-group-append">
-                    <span class="input-group-text"><a href="#" class="fa fa-plus"></a></span>
+                    <span class="input-group-text"><i class="fa fa-plus"></i></span>
                 </div>
             </div>
             <!-- /NEW TASK-->
@@ -35,31 +35,11 @@
             <!-- TASKS-->
             <div class="task-list">
 
-
                 <div class="task">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <input type="checkbox">
-                            </div>
-                        </div>
-
-                        <div class="task-text">
-                            <span>Read a book</span>
-                        </div>
-
-                        <div class="input-group-append">
-                            <span class="input-group-text"><a href="#" class="fa fa-edit"></a></span>
-                            <span class="input-group-text"><a href="#" class="fa fa-trash"></a></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="task">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input type="checkbox">
+                                <input class="checkbox" type="checkbox">
                             </div>
                         </div>
 
@@ -68,12 +48,30 @@
                         </div>
 
                         <div class="input-group-append">
-                            <span class="input-group-text"><a href="#" class="fa fa-edit"></a></span>
-                            <span class="input-group-text"><a href="#" class="fa fa-trash"></a></span>
+                            <span class="input-group-text"><i class="fa fa-edit"></i></span>
+                            <span class="input-group-text"><i class="fa fa-trash"></i></span>
                         </div>
                     </div>
                 </div>
 
+                <div class="task">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input class="checkbox" type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="task-text">
+                            <span>Read a book</span>
+                        </div>
+
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-edit"></i></span>
+                            <span class="input-group-text"><i class="fa fa-trash"></i></span>
+                        </div>
+                    </div>
+                </div>
 
 
             </div>
