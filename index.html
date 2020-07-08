@@ -23,33 +23,61 @@
         </header>
 
         <main class="container">
-            <div class="input-group mb-3">
+            <!-- NEW TASK-->
+            <div class="input-group new-task">
                 <input type="text" class="form-control" placeholder="New Task">
                 <div class="input-group-append">
                     <span class="input-group-text"><a href="#" class="fa fa-plus"></a></span>
                 </div>
             </div>
+            <!-- /NEW TASK-->
+
+            <!-- TASKS-->
+            <div class="task-list">
 
 
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox">
+                <div class="task">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="task-text">
+                            <span>Read a book</span>
+                        </div>
+
+                        <div class="input-group-append">
+                            <span class="input-group-text"><a href="#" class="fa fa-edit"></a></span>
+                            <span class="input-group-text"><a href="#" class="fa fa-trash"></a></span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="task-list">
-                    <span class="task">Lorem ipsum</span>
+                <div class="task">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="task-text">
+                            <span>Plant a tree</span>
+                        </div>
+
+                        <div class="input-group-append">
+                            <span class="input-group-text"><a href="#" class="fa fa-edit"></a></span>
+                            <span class="input-group-text"><a href="#" class="fa fa-trash"></a></span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="input-group-append">
-                    <span class="input-group-text"><a href="#" class="fa fa-edit"></a></span>
-                    <span class="input-group-text"><a href="#" class="fa fa-trash"></a></span>
-                </div>
+
+
             </div>
-
-
-
+            <!-- /TASKS-->
         </main>
 
         <footer>

@@ -17,7 +17,7 @@ ul {
 
 .light-background {
   position: fixed;
-  background-image: radial-gradient(rgb(255, 115, 0) 5%, rgb(255, 153, 0) 60%);
+  background-image: radial-gradient(rgb(107, 234, 243) 5%, rgb(123, 158, 253) 60%);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -33,7 +33,7 @@ ul {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   margin-top: 1rem;
-  text-shadow: 3px 3px rgb(255, 76, 44);
+  text-shadow: 3px 3px rgb(33, 24, 155);
   color: rgb(255, 255, 255);
   font-weight: 900;
   text-align: center;
@@ -67,31 +67,36 @@ footer {
   letter-spacing: 3rem;
 }
 .links li:hover {
-  text-shadow: 3px 3px rgb(255, 76, 44);
+  text-shadow: 3px 3px rgb(33, 24, 155);
 }
 
 /* TASKS CONTAINER */
 
-.container {
-  margin-top: 3rem;
+.input-group {
+  margin-top: 0.5rem;
 }
 
-.input-group {
-  margin-top: 2rem;
+.new-task{
+    margin-top: 3rem;
+    margin-bottom: 2.5rem;
 }
 
 .input-group-text {
-  background-color: rgb(255, 153, 0);
-  border: 2px solid rgb(255, 76, 44);
+  background-color: rgb(86, 131, 253);
+  border: 2px solid rgb(33, 24, 155);
   font-size: 1.5rem;
 }
 
+.input-group-text:hover {
+  text-shadow: 3px 3px rgb(33, 24, 155);
+}
+
 .form-control {
-  border: 2px solid rgb(255, 76, 44);
+  border: 2px solid rgb(33, 24, 155);
   font-size: 1.25rem;
 }
 
-.task-list {
+.task-text {
   position: relative;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
@@ -99,7 +104,7 @@ footer {
   min-width: 0;
   margin-bottom: 0;
   background-color: white;
-  border: 2px solid rgb(255, 76, 44);
+  border: 2px solid rgb(33, 24, 155);
   font-size: 1.25rem;
   padding-left: 1rem;
   padding-top: 2px;
