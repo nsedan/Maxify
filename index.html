@@ -25,7 +25,7 @@
         <main class="container">
             <!-- NEW TASK-->
             <div class="input-group new-task">
-                <input type="text" class="form-control" placeholder="New Task" required>
+                <input type="text" class="form-control" placeholder="New Task" maxlength="20">
                 <div class="input-group-append">
                     <span class="input-group-text"><i class="fa fa-plus"></i></span>
                 </div>
@@ -38,13 +38,11 @@
                 <div class="task">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input class="checkbox" type="checkbox">
-                            </div>
+                            <span class="input-group-text"><i class="fa fa-check off"></i></span>
                         </div>
 
                         <div class="task-text">
-                            <span>Plant a tree</span>
+                            <p>Plant a tree</p>
                         </div>
 
                         <div class="input-group-append">
@@ -57,13 +55,28 @@
                 <div class="task">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input class="checkbox" type="checkbox">
-                            </div>
+                            <span class="input-group-text"><i class="fa fa-check off"></i></span>
                         </div>
 
                         <div class="task-text">
-                            <span>Read a book</span>
+                            <p>Read a book</p>
+                        </div>
+
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-edit"></i></span>
+                            <span class="input-group-text"><i class="fa fa-trash"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="task">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-check off"></i></span>
+                        </div>
+
+                        <div class="task-text">
+                            <p>Take out the trash</p>
                         </div>
 
                         <div class="input-group-append">
@@ -76,6 +89,19 @@
 
             </div>
             <!-- /TASKS-->
+
+            <!-- EDIT OVERLAY-->
+            <div id="overlay">
+                <div class="input-group input-edit">
+                    <input type="text" class="form-control form-edit" placeholder="Edit Task" maxlength="20">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-pencil edited-task"></i></span>
+                    </div>
+                </div>
+            </div>
+            <!-- /EDIT OVERLAY-->
+
+
         </main>
 
         <footer>

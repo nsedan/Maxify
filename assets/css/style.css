@@ -5,20 +5,25 @@
   padding: 0;
 }
 
+p{
+  margin-bottom: 0;
+}
+
 a,
 a:hover,
 i,
 i:hover {
   text-decoration: none;
-  color: rgb(255, 255, 255);
+  color: #fafafa;
 }
 
 ul {
   list-style: none;
 }
 
-.fa, .checkbox{
-    cursor: pointer;
+.fa,
+.checkbox {
+  cursor: pointer;
 }
 
 .light-background {
@@ -42,8 +47,8 @@ ul {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   margin-top: 1rem;
-  text-shadow: 3px 3px rgb(33, 24, 155);
-  color: rgb(255, 255, 255);
+  text-shadow: 3px 3px rgb(43, 35, 155);
+  color: #fafafa;
   font-weight: 900;
   text-align: center;
 }
@@ -51,7 +56,7 @@ ul {
 #slogan {
   font-family: "MuseoModerno", cursive;
   text-transform: uppercase;
-  color: rgb(255, 255, 255);
+  color: #fafafa;
   font-weight: 600;
   text-align: center;
   margin-top: -0.5rem;
@@ -76,10 +81,10 @@ footer {
   letter-spacing: 4rem;
 }
 .links li:hover {
-  text-shadow: 3px 3px rgb(33, 24, 155);
+  text-shadow: 3px 3px rgb(43, 35, 155);
 }
 
-/* TASKS CONTAINER */
+/* TASKS */
 
 .input-group {
   margin-top: 0.5rem;
@@ -92,16 +97,16 @@ footer {
 
 .input-group-text {
   background-color: rgb(86, 131, 253);
-  border: 2px solid rgb(33, 24, 155);
+  border: 2px solid rgb(43, 35, 155);
   font-size: 1.5rem;
 }
 
 .input-group-text:hover {
-  text-shadow: 3px 3px rgb(33, 24, 155);
+  text-shadow: 3px 3px rgb(43, 35, 155);
 }
 
-.form-control {
-  border: 2px solid rgb(33, 24, 155);
+.form-control, .form-edit {
+  border: 2px solid rgb(43, 35, 155);
   font-size: 1.25rem;
 }
 
@@ -112,9 +117,50 @@ footer {
   width: 1%;
   min-width: 0;
   margin-bottom: 0;
-  background-color: white;
-  border: 2px solid rgb(33, 24, 155);
+  background-color: #fafafa;
+  border: 2px solid rgb(43, 35, 155);
   font-size: 1.25rem;
   padding-left: 1rem;
   padding-top: 2px;
+}
+
+.fa-check.on {
+  border: 2px solid #fafafa;
+  padding: 1px;
+  border-radius: 25%;
+  font-size: 1rem;
+  text-shadow: none;
+}
+
+.fa-check.off {
+  border: 2px solid #fafafa;
+  padding: 1px;
+  border-radius: 25%;
+  font-size: 1rem;
+  text-shadow: none;
+  background-color: #fafafa;
+}
+
+i.fa-check:hover {
+  border: 2px solid rgb(43, 35, 155);
+}
+
+
+/* EDIT TASKS */
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.8);
+  z-index: 2;
+  cursor: pointer;
+}
+
+.input-edit{
+  padding-top:40%;
 }
