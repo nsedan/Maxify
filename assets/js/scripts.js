@@ -1,13 +1,18 @@
+let index = 0;
+const overlay = '<div id="overlay"><div class="input-group input-edit"><input type="text" class="form-control form-edit" placeholder="Edit Task" maxlength="20"><div class="input-group-append"><span class="input-group-text"><i class="fa fa-pencil edited-task"></i></span></div></div></div>'
+
 //ADD TASKS
 $(document).on('click', '.fa-plus', function () {
     if ($('.form-control').val()) {
         let newTask = $('.form-control').val();
-        let taskBlock = '<div class="task"><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off"></i></span></div><div class="task-text"><p>' + newTask + '</p></div><div class="input-group-append"><span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text"><i class="fa fa-trash"></i></span></div></div></div>'
+        let taskBlock = '<div class="task" ' + 'data-index="' + index + '"' + '><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off"></i></span></div><div class="task-text"><p>' + newTask + '</p></div><div class="input-group-append"><span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text"><i class="fa fa-trash"></i></span></div></div></div>'
+        index++
         $('.task-list').append(taskBlock)
         $('.form-control').val("")
     } else {
         alert("'Nothing' is not a task!")
     }
+    console.log('index', index)
 })
 
 //DELETE BUTTON
@@ -19,6 +24,7 @@ $(document).on('click', '.fa-trash', function () {
 $(document).on('click', '.fa-check', function () {
     if ($(this).hasClass('off')) {
         $(this).removeClass('off').addClass('on');
+        $()
     } else if ($(this).hasClass('on')) {
         $(this).removeClass('on').addClass('off')
     }
@@ -27,22 +33,30 @@ $(document).on('click', '.fa-check', function () {
 
 //EDIT BUTTON
 $(document).on('click', '.fa-edit', function () {
-    $(this).closest('.task').remove();
-    $('#overlay').css('display', 'block');
-    // pop up input
-
+    $('.container').append(overlay)
+    const $task = $(this).closest('.task')
+    const $overlay = $('#overlay');
+    onEdit($task, $overlay)
 
 });
 
-$(document).on('click', '.edited-task', function () {
-    if ($('.form-edit').val()) {
-        $('#overlay').css('display', 'none');
-        let editedTask = $('.form-edit').val();
-        let taskEdit = '<div class="task"><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off"></i></span></div><div class="task-text"><p>' + editedTask + '</p></div><div class="input-group-append"><span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text"><i class="fa fa-trash"></i></span></div></div></div>'
-        $('.task-list').append(taskEdit)
-        $('.form-edit').val("")
-    } else {
-        alert("'Nothing' is not a task!")
-    }
-})
+function onEdit($task, $overlay) {
+    console.log('no es el mismo', $task)
+    const currentValue = $task.find('p').text()
+    
+    $overlay.find('.form-edit').val(currentValue)
+
+    $overlay.find('.edited-task').click(function () {
+        let editedTask = $overlay.find('.form-edit').val();
+        console.log(editedTask)
+        if (editedTask) {
+            
+            $task.find('p').text(editedTask)
+            
+            $overlay.remove()
+        } else {
+            alert("Task cannot be empty!")
+        }
+    })
+}
 
