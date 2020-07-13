@@ -164,3 +164,30 @@ i.fa-check:hover {
 .input-edit{
   padding-top:40%;
 }
+
+
+
+/* TROPHYS */
+.trophy-section{
+  display: none;
+  position: relative;
+  font-size: 2rem;
+}
+
+.trophy-section .fa{
+  cursor: default;
+}
+
+.trophy-div{
+  margin-top: 3rem;
+  padding: 1rem 0 1rem 2rem;
+  background-color: rgb(86, 131, 253);
+  border-radius: .25rem;
+}
+
+.trophy-text{
+  display: inline;
+  padding-left: 1rem;
+  font-size: 2rem;
+  color: #fafafa;
+}
