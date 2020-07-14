@@ -67,29 +67,41 @@ $(document).on('click', '.fa-home', function () {
 const completed = ' <span style="color: rgba(255, 0, 0, 0.623); text-decoration: none">COMPLETED</span>'
 
 $(document).one("click", '.fa-plus', function () {
+    const trophy1 = '<div class="pop-up-trophy"><p class="pop-up-close">x</p><h6>Congratulations on creating your first task!</h6><h6>You just earned a trophy!</h6></div>'
+    $('.pop-up-trophy').remove()
     setTimeout(function () {
         $('#trophy1').html('<span style="text-decoration: line-through;">Add a task!</span>' + completed);
-        alert('Congratulations! You just earned a trophy!');
+        $('header').append(trophy1)
     }, 750);
 }); // FIX, WORKS WITH EMPTY INPUT
 
 $(document).one("click", '.fa-trash', function () {
+    const trophy2 = '<div class="pop-up-trophy"><p class="pop-up-close">x</p><h6>You deleted a task and earned a trophy!</h6></div>'
+    $('.pop-up-trophy').remove()
     setTimeout(function () {
         $('#trophy2').html('<span style="text-decoration: line-through;">Delete a task!</span>' + completed);
-        alert('Congratulations! You just earned a trophy!');
+        $('header').append(trophy2)
     }, 750);
 });
 
 $(document).one("click", '.fa-check', function () {
+    const trophy3 = '<div class="pop-up-trophy"><p class="pop-up-close">x</p><h6>Kudos on finishing your first task!</h6><h6>You just earned a trophy!</h6></div>'
+    $('.pop-up-trophy').remove()
     setTimeout(function () {
         $('#trophy3').html('<span style="text-decoration: line-through;">Finish a task!</span>' + completed);
-        alert('Congratulations! You just earned a trophy!');
+        $('header').append(trophy3)
     }, 750);
 });
 
 $(document).one("click", '.fa-pencil', function () {
+    const trophy4 = '<div class="pop-up-trophy"><p class="pop-up-close">x</p><h6>You edited a task and earned another trophy!</h6></div>'
+    $('.pop-up-trophy').remove()
     setTimeout(function () {
         $('#trophy4').html('<span style="text-decoration: line-through;">Edit a task!</span>' + completed);
-        alert('Congratulations! You just earned a trophy!');
+        $('header').append(trophy4)
     }, 750);
 });
+
+$(document).on('click', '.pop-up-close', function () {
+    $('.pop-up-trophy').css('display', 'none')
+})

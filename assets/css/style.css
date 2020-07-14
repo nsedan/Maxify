@@ -5,7 +5,7 @@
   padding: 0;
 }
 
-p{
+p {
   margin-bottom: 0;
 }
 
@@ -91,7 +91,7 @@ footer {
 }
 
 .new-task {
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
 
@@ -105,7 +105,8 @@ footer {
   text-shadow: 3px 3px rgb(43, 35, 155);
 }
 
-.form-control, .form-edit {
+.form-control,
+.form-edit {
   border: 2px solid rgb(43, 35, 155);
   font-size: 1.25rem;
 }
@@ -145,7 +146,6 @@ i.fa-check:hover {
   border: 2px solid rgb(43, 35, 155);
 }
 
-
 /* EDIT TASKS */
 #overlay {
   position: fixed;
@@ -156,38 +156,54 @@ i.fa-check:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: 2;
   cursor: pointer;
 }
 
-.input-edit{
-  padding-top:40%;
+.input-edit {
+  padding-top: 40%;
 }
-
-
 
 /* TROPHYS */
-.trophy-section{
+.trophy-section {
   display: none;
   position: relative;
-  font-size: 2rem;
+  font-size: 1.25rem;
 }
 
-.trophy-section .fa{
+.trophy-section .fa {
   cursor: default;
 }
 
-.trophy-div{
-  margin-top: 3rem;
+.trophy-div {
+  margin-top: 2.5rem;
   padding: 1rem 0 1rem 2rem;
   background-color: rgb(86, 131, 253);
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 }
 
-.trophy-text{
+.trophy-text {
   display: inline;
   padding-left: 1rem;
-  font-size: 2rem;
+  font-size: 1.25rem;
   color: #fafafa;
+}
+
+.pop-up-trophy {
+  padding: 1rem;
+  background-color: rgb(86, 131, 253);
+  color: #fafafa;
+  border-radius: 0.25rem;
+  width: 66%;
+  margin: auto;
+  margin-top: 2rem;
+ /* display: none; */
+  text-align: center;
+}
+
+.pop-up-trophy p{
+  position: absolute;
+  cursor: pointer;
+  font-weight: 600;
 }
