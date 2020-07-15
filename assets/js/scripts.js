@@ -1,156 +1,28 @@
 //ADD TASKS
 let index = 0;
 
+const addTask = function () {
+    let newTask = $('.form-control').val();
+    let taskBlock = '<div class="task" data-index="' + index + '"' + '><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off"></i></span></div><div class="task-text"><p>' + newTask + '</p></div><div class="input-group-append"><span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text"><i class="fa fa-trash"></i></span></div></div></div>'
+    index++
+    $('.task-list').append(taskBlock)
+    $('.form-control').val("")
+};
 
-
-
-function newTaskTrophy() {
-    let firstTrophyEarned = false
-    console.log(firstTrophyEarned)
-
-    if (firstTrophyEarned === true) {
-
-        $(document).on("click", '.fa-plus', function () {
-            if ($('.form-control').val()) {
-                let newTask = $('.form-control').val();
-                let taskBlock = '<div class="task" data-index="' + index + '"' + '><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off"></i></span></div><div class="task-text"><p>' + newTask + '</p></div><div class="input-group-append"><span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text"><i class="fa fa-trash"></i></span></div></div></div>'
-                index++
-                $('.task-list').append(taskBlock)
-                $('.form-control').val("")
-                console.log(firstTrophyEarned)
-                
-            }
-            else {
-                alert("'Nothing' is not a task!")
-                console.log(firstTrophyEarned)
-            }
-        })
-
-
-    } if (firstTrophyEarned === false) {
-        $(document).on("click", '.fa-plus', function () {
-            if ($('.form-control').val()) {
-
-                const trophy1 = '<div class="pop-up-trophy"><p class="pop-up-close">x</p><h6>Congratulations on creating your first task!</h6><h6>You just earned a trophy!</h6></div>'
-                $('.pop-up-trophy').remove()
-                setTimeout(function () {
-                    $('#trophy1').html('<span style="text-decoration: line-through;">Add a task!</span>' + completed);
-                    $('header').append(trophy1)
-                }, 750);
-
-                let newTask = $('.form-control').val();
-                let taskBlock = '<div class="task" data-index="' + index + '"' + '><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off"></i></span></div><div class="task-text"><p>' + newTask + '</p></div><div class="input-group-append"><span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text"><i class="fa fa-trash"></i></span></div></div></div>'
-                index++
-                $('.task-list').append(taskBlock)
-                $('.form-control').val("")
-                firstTrophyEarned = true
-                console.log(firstTrophyEarned)
-            }
-            else {
-                alert("Your task is empty!")
-                console.log(firstTrophyEarned)
-            }
-        })
-    }
-
-}
-
-newTaskTrophy()
-/*
-$(document).on("click", '.fa-plus', function FunctionA() {
+$(document).on("click", '.fa-plus', function () {
+    $('.pop-up-trophy').remove()
     if ($('.form-control').val()) {
-
-        const trophy1 = '<div class="pop-up-trophy"><p class="pop-up-close">x</p><h6>Congratulations on creating your first task!</h6><h6>You just earned a trophy!</h6></div>'
-        $('.pop-up-trophy').remove()
-        setTimeout(function () {
-            $('#trophy1').html('<span style="text-decoration: line-through;">Add a task!</span>' + completed);
-            $('header').append(trophy1)
-        }, 750);
-
-        let newTask = $('.form-control').val();
-        let taskBlock = '<div class="task" data-index="' + index + '"' + '><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off"></i></span></div><div class="task-text"><p>' + newTask + '</p></div><div class="input-group-append"><span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text"><i class="fa fa-trash"></i></span></div></div></div>'
-        index++
-        $('.task-list').append(taskBlock)
-        $('.form-control').val("")
-
-    }
-    else {
-        alert("'Nothing' is not a task!")
-    }
-})
-/*
-function newTaskTrophy (){
-    
-    $(document).on('click', '.fa-plus', function () {
-        if ($('.form-control').val()) {
-            
-            const trophy1 = '<div class="pop-up-trophy"><p class="pop-up-close">x</p><h6>Congratulations on creating your first task!</h6><h6>You just earned a trophy!</h6></div>'
-            $('.pop-up-trophy').remove()
-            setTimeout(function () {
-                $('#trophy1').html('<span style="text-decoration: line-through;">Add a task!</span>' + completed);
-                $('header').append(trophy1)
-            }, 750);
-    
-            let newTask = $('.form-control').val();
-            let taskBlock = '<div class="task" data-index="' + index + '"' + '><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off"></i></span></div><div class="task-text"><p>' + newTask + '</p></div><div class="input-group-append"><span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text"><i class="fa fa-trash"></i></span></div></div></div>'
-            index++
-            $('.task-list').append(taskBlock)
-            $('.form-control').val("")
-    
-        }
-        else {
-            alert("'Nothing' is not a task!")
-        }
-    })
-}
-
-newTaskTrophy ()
-
-*/
-
-
-/*
-function Trophy() {
-    this.trophy = {
-        1: false,
-        2: false
-    }
-
-    this.setTrophy = function (number, value) {
-        this.trophy[number] = value;
-    }
-
-    return this;
-}
-const achievements = new Trophy();
-
-
-$(document).on('click', '.fa-plus', function () {
-    if ($('.form-control').val()) {
-        let newTask = $('.form-control').val();
-        let taskBlock = '<div class="task" data-index="' + index + '"' + '><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off"></i></span></div><div class="task-text"><p>' + newTask + '</p></div><div class="input-group-append"><span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text"><i class="fa fa-trash"></i></span></div></div></div>'
-        index++
-        $('.task-list').append(taskBlock)
-        $('.form-control').val("")
-
-
-        if (achievements.trophy[1]) {
-            const trophy1 = '<div class="pop-up-trophy"><p class="pop-up-close">x</p><h6>Congratulations on creating your first task!</h6><h6>You just earned a trophy!</h6></div>'
-            $('.pop-up-trophy').remove()
-            setTimeout(function () {
-                $('#trophy1').html('<span style="text-decoration: line-through;">Add a task!</span>' + completed);
-                $('header').append(trophy1)
-            }, 750);
-            
-
+        if (!trophy1Awarded) {
+            addTask();
+            firstTrophyPopUp();
+            trophy1Awarded = true
+        } else {
+            addTask();
         }
     } else {
         alert("'Nothing' is not a task!")
     }
 })
-*/
-
-
 
 //DELETE BUTTON
 $(document).on('click', '.fa-trash', function () {
@@ -161,7 +33,6 @@ $(document).on('click', '.fa-trash', function () {
 $(document).on('click', '.fa-check', function () {
     if ($(this).hasClass('off')) {
         $(this).removeClass('off').addClass('on');
-        $()
     } else if ($(this).hasClass('on')) {
         $(this).removeClass('on').addClass('off')
     }
@@ -207,16 +78,15 @@ $(document).on('click', '.fa-home', function () {
 
 const completed = ' <span style="color: rgba(255, 0, 0, 0.623); text-decoration: none">COMPLETED</span>'
 
-/*
-$(document).one("click", '.fa-plus', function () {
+let trophy1Awarded = false;
+
+const firstTrophyPopUp = function () {
     const trophy1 = '<div class="pop-up-trophy"><p class="pop-up-close">x</p><h6>Congratulations on creating your first task!</h6><h6>You just earned a trophy!</h6></div>'
-    $('.pop-up-trophy').remove()
     setTimeout(function () {
         $('#trophy1').html('<span style="text-decoration: line-through;">Add a task!</span>' + completed);
         $('header').append(trophy1)
     }, 750);
-});*/
-
+};
 
 $(document).one("click", '.fa-trash', function () {
     const trophy2 = '<div class="pop-up-trophy"><p class="pop-up-close">x</p><h6>You deleted a task and earned a trophy!</h6></div>'
