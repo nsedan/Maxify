@@ -198,12 +198,16 @@ i.fa-check:hover {
   width: 66%;
   margin: auto;
   margin-top: 2rem;
- /* display: none; */
   text-align: center;
 }
 
-.pop-up-trophy p{
+.pop-up-trophy p {
   position: absolute;
   cursor: pointer;
   font-weight: 600;
+}
+
+.pop-up-trophy h6 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
