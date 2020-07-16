@@ -57,8 +57,8 @@ $(document).on('click', '.fa-check', function () {
 
 
 //EDIT BUTTON
-const overlay = '<div id="overlay"><div class="input-group input-edit"><input type="text" class="form-control form-edit" maxlength="20"><div class="input-group-append"><span class="input-group-text"><i class="fa fa-pencil edited-task"></i></span></div></div></div>'
-const overlayDark = '<div id="overlay"><div class="input-group input-edit"><input type="text" class="form-control form-edit form-control-dark form-edit-dark" maxlength="20"><div class="input-group-append"><span class="input-group-text input-group-text-dark"><i class="fa fa-pencil edited-task"></i></span></div></div></div>'
+const overlay = '<div id="overlay"><div class="input-group input-edit"><input type="text" class="form-control form-edit"><div class="input-group-append"><span class="input-group-text"><i class="fa fa-pencil edited-task"></i></span></div></div></div>'
+const overlayDark = '<div id="overlay"><div class="input-group input-edit"><input type="text" class="form-control form-edit form-control-dark form-edit-dark"><div class="input-group-append"><span class="input-group-text input-group-text-dark"><i class="fa fa-pencil edited-task"></i></span></div></div></div>'
 
 $(document).on('click', '.fa-edit', function () {
     if ($('#theme').hasClass('light-background')) {
