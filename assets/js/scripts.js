@@ -118,3 +118,37 @@ $(document).one("click", '.fa-pencil', function () {
 $(document).on('click', '.pop-up-close', function () {
     $('.pop-up-trophy').css('display', 'none')
 })
+
+
+// THEME CHANGE
+$(document).on('click', '.fa-adjust', function () {
+    if ($('#theme').hasClass('light-background')) {
+        $('#theme').addClass('dark-background').removeClass('light-background');
+        $('#maxify').css('text-shadow', '3px 3px rgb(99, 99, 99)');
+        $('.links').addClass('links-dark')
+        $('.input-group-text').addClass('input-group-text-dark')
+        $('.form-control').addClass('form-control-dark')
+        $('.form-edit').addClass('form-edit-dark')
+        $('.task-text').addClass('task-text-dark')
+        $('.fa-check').addClass('fa-check-dark')
+        $('.pop-up-trophy').addClass('pop-up-trophy-dark')
+        $('.trophy-div').addClass('trophy-div-dark')
+  
+
+        console.log('dark')
+    } else if ($('#theme').hasClass('dark-background')) {
+        $('#theme').addClass('light-background').removeClass('dark-background')
+        $('#maxify').css('text-shadow', '3px 3px rgb(43, 35, 155)');
+        $('.links').removeClass('links-dark')
+        $('.input-group-text').removeClass('input-group-text-dark')
+        $('.form-control').removeClass('form-control-dark')
+        $('.form-edit').removeClass('form-edit-dark')
+        $('.task-text').removeClass('task-text-dark')
+        $('.fa-check').removeClass('fa-check-dark')
+        $('.pop-up-trophy').removeClass('pop-up-trophy-dark')
+        $('.trophy-div').removeClass('trophy-div-dark')
+
+        
+        console.log('light')
+    }
+})

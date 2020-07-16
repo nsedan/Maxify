@@ -27,10 +27,24 @@ ul {
 }
 
 .light-background {
-  position: fixed;
+  position: absolute;
   background-image: linear-gradient(
     rgb(123, 158, 253) 5%,
     rgb(107, 182, 243) 60%
+  );
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.dark-background {
+  position: absolute;
+  background-image: linear-gradient(
+    rgb(0, 0, 0) 5%,
+    rgb(53, 53, 53) 60%
   );
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -64,7 +78,7 @@ ul {
 
 @media screen and (max-width: 600px) {
   #maxify {
-    font-size: 3rem;
+    font-size: 3.25rem;
   }
   #slogan{
     font-size: 0.75rem;
@@ -76,34 +90,39 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+  background-color: rgba(0,0,0,0.2);
+  padding-top: 0.5rem;
 }
 
 .links {
   display: table;
   margin: 0 auto;
-  padding-left: 4rem;
+  padding-left: 7rem;
 }
 
 .links li {
   display: inline;
   font-size: 3rem;
-  letter-spacing: 4rem;
+  letter-spacing: 7rem;
 }
 .links li:hover {
   text-shadow: 3px 3px rgb(43, 35, 155);
 }
 
+.links-dark li:hover {
+  text-shadow: 3px 3px rgb(100, 100, 100);
+}
+
 
 @media screen and (max-width: 600px) {
   .links {
-    padding-left: 2rem;
+    padding-left: 3rem;
   }
 
   .links li {
     font-size: 2rem;
-    letter-spacing: 2rem;
+    letter-spacing: 3rem;
   }
-
 }
 
 /* TASKS */
@@ -168,6 +187,46 @@ i.fa-check:hover {
   border: 2px solid rgb(43, 35, 155);
 }
 
+.task-list{
+  margin-bottom: 7rem;
+}
+
+
+.input-group-text-dark {
+  background-color: rgb(80,80,80);
+  border: 2px solid rgb(100, 100, 100);
+  font-size: 1.5rem;
+}
+
+.input-group-text-dark:hover {
+  text-shadow: 3px 3px rgb(100, 100, 100);
+}
+
+.form-control-dark,
+.form-edit-dark {
+  border: 2px solid rgb(100, 100, 100);
+  font-size: 1.25rem;
+}
+
+.task-text-dark {
+  position: relative;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+  margin-bottom: 0;
+  background-color: #fafafa;
+  border: 2px solid rgb(100, 100, 100);
+  font-size: 1.25rem;
+  padding-left: 1rem;
+  padding-top: 2px;
+}
+
+i.fa-check-dark:hover {
+  border: 2px solid rgb(100, 100, 100);
+}
+
+
 /* EDIT TASKS */
 #overlay {
   position: fixed;
@@ -199,7 +258,7 @@ i.fa-check:hover {
 }
 
 .trophy-div {
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   padding: 1rem 0 1rem 2rem;
   background-color: rgb(86, 131, 253);
   border-radius: 0.25rem;
@@ -232,4 +291,23 @@ i.fa-check:hover {
 .pop-up-trophy h6 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+
+.trophy-div-dark {
+  margin-top: 2rem;
+  padding: 1rem 0 1rem 2rem;
+  background-color: rgb(80,80,80);
+  border-radius: 0.25rem;
+}
+
+.pop-up-trophy-dark {
+  padding: 1rem;
+  background-color: rgb(80,80,80);
+  color: #fafafa;
+  border-radius: 0.25rem;
+  width: 66%;
+  margin: auto;
+  margin-top: 2rem;
+  text-align: center;
 }
