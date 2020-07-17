@@ -4,8 +4,7 @@
 
 This is a proyect for personal tasks management
 
-![](/assets/images/screenshot1.png)
-![](/assets/images/screenshot2.png)
+<img src="/assets/img/screenshot1.jpeg" width="200"> <img src="/assets/img/screenshot2.jpeg" width="200"> <img src="/assets/img/screenshot3.jpeg" width="200"> <img src="/assets/img/screenshot4.jpeg" width="200">
  
 ---
 
