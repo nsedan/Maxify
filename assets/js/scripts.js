@@ -1,7 +1,7 @@
 //ADD TASKS
 let index = 0;
 
-const addTask = function () {
+const addTaskBlock = function () {
     let newTask = $('.form-control').val();
     let taskBlock = '<div class="task" data-index="' + index + '"' + '><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off"></i></span></div><div class="task-text"><p>' + newTask + '</p></div><div class="input-group-append"><span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text"><i class="fa fa-trash"></i></span></div></div></div>'
     index++
@@ -9,7 +9,7 @@ const addTask = function () {
     $('.form-control').val("")
 };
 
-const addDarkTask = function () {
+const addDarkTaskBlock = function () {
     let newTask = $('.form-control-dark').val();
     let taskBlock = '<div class="task" data-index="' + index + '"' + '><div class="input-group"><div class="input-group-prepend"><span class="input-group-text input-group-text-dark"><i class="fa fa-check off"></i></span></div><div class="task-text task-text-dark"><p>' + newTask + '</p></div><div class="input-group-append"><span class="input-group-text input-group-text-dark"><i class="fa fa-edit"></i></span><span class="input-group-text input-group-text-dark"><i class="fa fa-trash"></i></span></div></div></div>'
     index++
@@ -17,29 +17,40 @@ const addDarkTask = function () {
     $('.form-control-dark').val("")
 };
 
-$(document).on("click", '.fa-plus', function () {
+function taskFunction() {
     $('.pop-up-trophy').remove()
     if ($('.form-control').val()) {
         if (!trophy1Awarded) {
             if ($('#theme').hasClass('light-background')) {
-                addTask();
+                addTaskBlock();
                 firstTrophyPopUp();
             } else if ($('#theme').hasClass('dark-background')) {
-                addDarkTask();
+                addDarkTaskBlock();
                 firstTrophyDarkPopUp();
             }
             trophy1Awarded = true
         } else {
             if ($('#theme').hasClass('light-background')) {
-                addTask();
+                addTaskBlock();
             } else if ($('#theme').hasClass('dark-background')) {
-                addDarkTask();
+                addDarkTaskBlock();
             }
         }
     } else {
         alert("'Nothing' is not a task!")
     }
+}
+
+$(document).on("click", '.fa-plus', function () {
+    taskFunction()
 })
+
+$(document).on("keypress", '#main-input', function (event) {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode == '13') {
+        taskFunction()
+    }
+});
 
 //DELETE BUTTON
 $(document).on('click', '.fa-trash', function () {
@@ -208,5 +219,8 @@ $(document).on('click', '.fa-adjust', function () {
 
     }
 })
+
+
+
 
 

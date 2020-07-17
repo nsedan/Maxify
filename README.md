@@ -1,39 +1,91 @@
-<img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
+# [Maxify](https://nsedan.github.io/Maxify/) 
 
-Welcome USER_NAME,
+> Top Up Your Productivity.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project.
+This is a proyect for personal tasks management
 
-## Gitpod Reminders
+![](/assets/images/screenshot1.png)
+![](/assets/images/screenshot2.png)
+ 
+---
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## UX
+ 
+The propose of this website is...
 
-`python3 -m http.server`
+## Features
 
-A blue button should appear to click: *Make Public*,
+The website has five main features:
+ - 
+ 
+### Features Left to Implement
+ - Add a client-side cache to store the preferences and tasks of the user.
+ - Add a calendar API to track and trace tasks. 
 
-Another blue button should appear to click: *Open Browser*.
+## Technologies Used
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+This website was developed in HTML for markup, CSS for style after designing the some layout with Bootstrap, and Javascript for user interactivity.
 
-A blue button should appear to click: *Make Public*,
+Additionally, the next technologies were used:
 
-Another blue button should appear to click: *Open Browser*.
+- [JQuery](https://jquery.com)
+    - The project uses **JQuery** to simplify DOM manipulation.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the backend lessons.
+- [Bootstrap](https://getbootstrap.com/)
+    - I used **Bootstrap** to style layout and elements.
 
-## Updates Since The Instructional Video
+## Testing
 
-We continually tweak and adjust this template to help give you the best experience. Here are the updates since the original video was made:
+All user testing has been with the hosted website in the GitHub platform. The objective was to test the responsiveness of the site, mainly to check how the different devices adapt to the changes in the layout.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+The devices that this site was test were:
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+- Samsung Galaxy S6
+- Samsung Galaxy A50
+- Samsung Galaxy A70
+- Iphone 8 Plus
+- Laptop ASUS S510UA, 15.6"
+- Desktop PC, 27"
+- Tablet was tested with Chrome developer tools.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+Several User Tests were made throughout the project. 
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+## Contributing
 
---------
+If you want to locally deploy this project to make contributions follow this steps:
 
-Happy coding!
+ 1. Click on the 'Clone or download' button in the code section and copy the [URL](https://github.com/nsedan/Maxify.git)
+ 2. Go to your code editor of choice.
+ 3. Open the terminal and run 'git clone url-link'. 
+ 
+    ```sh
+    git clone https://github.com/nsedan/Maxify.git
+    ```
+
+  4. Start coding!
+
+## Deployment
+
+This website is hosted in the GitHub Pages platform. [Maxify](https://nsedan.github.io/Maxify/) 
+
+For deployment follow this steps:
+
+ 1. On GitHub, go to your site's repository.
+ 2. Click on the Settings button.
+ 3. Under 'GitHub Pages', use the Source dropdown and select the branch you want to host.
+
+## Credits
+
+- To [w3shools](https://www.w3schools.com/)
+- To [MDN web docs](https://developer.mozilla.org/)
+- To [Stack Overflow](https://stackoverflow.com/)
+- To [Diego Marmol](https://github.com/dmmarmol)
+- To [Font Awesome](https://fontawesome.com/)
+
+
+### Acknowledgements
+
+ I received inspiration for this project from:
+
+ - [Microsoft To Do](https://todo.microsoft.com/tasks/)
+ - [Develop a To-Do List APP in Vanilla Javascript - Carlos da Costa](https://blog.usejournal.com/develop-a-to-do-list-app-in-vanilla-javascript-95377ec370c5)

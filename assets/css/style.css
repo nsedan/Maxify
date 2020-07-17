@@ -243,8 +243,15 @@ i.fa-check-dark:hover {
 }
 
 .input-edit {
-  padding-top: 40%;
+  padding-top: 20%;
 }
+
+@media screen and (max-width: 600px) {
+  .input-edit {
+    padding-top: 40%;
+  }
+}
+
 
 /* TROPHYS */
 .trophy-section {
