@@ -53,7 +53,7 @@ $(document).on("click", '.fa-plus', function () {
 })
 
 $(document).on("keypress", '#main-input', function (event) {
-    var keycode = (event.keyCode ? event.keyCode : event.which);
+    const keycode = (event.keyCode ? event.keyCode : event.which);
     if (keycode == '13') {
         taskFunction()
     }
@@ -61,9 +61,13 @@ $(document).on("keypress", '#main-input', function (event) {
 
 //DELETE BUTTON
 $(document).on('click', '.fa-trash', function () {
-    let taskQuery = $(this).closest('.task')
+    const taskQuery = $(this).closest('.task')
     taskQuery.remove();
+    let dataIndex = taskQuery.data("index")
+    delete storagedTasks[dataIndex]
+    localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks))
 });
+
 
 //CHECK BUTTON
 $(document).on('click', '.fa-check', function () {
@@ -251,13 +255,36 @@ $( document ).ready(function(){ /* users theme prefence*/
     } else if (theme == 'light'){
         lightThemeStyle()
     }
+
+
+    
 })
 
+
 let storagedTasks = {};
+let retrieveTasks = JSON.parse(localStorage.getItem('storagedTasks'));
+let taskList = Object.entries(retrieveTasks)
 
-/*
-localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
-
-var taskList = localStorage.getItem('storagedTasks');
-
-console.log('storagedTasks: ', JSON.parse(localStorage.getItem('storagedTasks')));*/
+for (const [indexNum, text] of taskList) {
+    if($('#theme').hasClass('light-background')){
+        let htmlDivBlock = `<div class="task" data-index="${indexNum}"><div class="input-group">
+        <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off">
+        </i></span></div><div class="task-text"><p>${text}</p></div><div class="input-group-append">
+        <span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text">
+        <i class="fa fa-trash"></i></span></div></div></div>`;
+        $('.task-list').append(htmlDivBlock)
+        storagedTasks[index] = text;
+        index++
+        
+    }else if ($('#theme').hasClass('dark-background')) {
+        let htmlDivBlock = `<div class="task" data-index="${indexNum}"><div class="input-group">
+        <div class="input-group-prepend"><span class="input-group-text input-group-text-dark">
+        <i class="fa fa-check fa-check-dark off"></i></span></div><div class="task-text task-text-dark">
+        <p>${text}</p></div><div class="input-group-append"><span class="input-group-text input-group-text-dark">
+        <i class="fa fa-edit"></i></span><span class="input-group-text input-group-text-dark">
+        <i class="fa fa-trash"></i></span></div></div></div>`
+        $('.task-list').append(htmlDivBlock)
+        storagedTasks[index] = text;
+        index++
+    }
+  }
