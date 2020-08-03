@@ -10,7 +10,7 @@ This is a proyect for personal tasks management
 
 ## UX
  
-The propose of this website is...
+The propose of this website is to add and manage tasks to increase personal productivity.
 
 ## Features
 

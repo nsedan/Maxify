@@ -3,19 +3,30 @@ let index = 0;
 
 const addTaskBlock = function () {
     let newTask = $('.form-control').val();
-    let taskBlock = '<div class="task" data-index="' + index + '"' + '><div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off"></i></span></div><div class="task-text"><p>' + newTask + '</p></div><div class="input-group-append"><span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text"><i class="fa fa-trash"></i></span></div></div></div>'
+    let taskBlock = `<div class="task" data-index="${index}"><div class="input-group">
+    <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off">
+    </i></span></div><div class="task-text"><p>${newTask}</p></div><div class="input-group-append">
+    <span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text">
+    <i class="fa fa-trash"></i></span></div></div></div>`
+
     index++
     $('.task-list').append(taskBlock)
     $('.form-control').val("")
-};
+    };
 
 const addDarkTaskBlock = function () {
     let newTask = $('.form-control-dark').val();
-    let taskBlock = '<div class="task" data-index="' + index + '"' + '><div class="input-group"><div class="input-group-prepend"><span class="input-group-text input-group-text-dark"><i class="fa fa-check off"></i></span></div><div class="task-text task-text-dark"><p>' + newTask + '</p></div><div class="input-group-append"><span class="input-group-text input-group-text-dark"><i class="fa fa-edit"></i></span><span class="input-group-text input-group-text-dark"><i class="fa fa-trash"></i></span></div></div></div>'
+    let taskBlock = `<div class="task" data-index="${index}"><div class="input-group">
+    <div class="input-group-prepend"><span class="input-group-text input-group-text-dark">
+    <i class="fa fa-check fa-check-dark off"></i></span></div><div class="task-text task-text-dark">
+    <p>${newTask}</p></div><div class="input-group-append"><span class="input-group-text input-group-text-dark">
+    <i class="fa fa-edit"></i></span><span class="input-group-text input-group-text-dark">
+    <i class="fa fa-trash"></i></span></div></div></div>`
+
     index++
     $('.task-list').append(taskBlock)
     $('.form-control-dark').val("")
-};
+    };
 
 function taskFunction() {
     $('.pop-up-trophy').remove()
@@ -54,7 +65,8 @@ $(document).on("keypress", '#main-input', function (event) {
 
 //DELETE BUTTON
 $(document).on('click', '.fa-trash', function () {
-    $(this).closest('.task').remove();
+    let taskQuery = $(this).closest('.task')
+    taskQuery.remove();
 });
 
 //CHECK BUTTON
@@ -68,8 +80,13 @@ $(document).on('click', '.fa-check', function () {
 
 
 //EDIT BUTTON
-const overlay = '<div id="overlay"><div class="input-group input-edit"><input type="text" class="form-control form-edit"><div class="input-group-append"><span class="input-group-text"><i class="fa fa-pencil edited-task"></i></span></div></div></div>'
-const overlayDark = '<div id="overlay"><div class="input-group input-edit"><input type="text" class="form-control form-edit form-control-dark form-edit-dark"><div class="input-group-append"><span class="input-group-text input-group-text-dark"><i class="fa fa-pencil edited-task"></i></span></div></div></div>'
+const overlay = `<div id="overlay"><div class="input-group input-edit">
+<input type="text" class="form-control form-edit"><div class="input-group-append">
+<span class="input-group-text"><i class="fa fa-pencil edited-task"></i></span></div></div></div>`
+const overlayDark = `<div id="overlay"><div class="input-group input-edit">
+<input type="text" class="form-control form-edit form-control-dark form-edit-dark">
+<div class="input-group-append"><span class="input-group-text input-group-text-dark">
+<i class="fa fa-pencil edited-task"></i></span></div></div></div>`
 
 $(document).on('click', '.fa-edit', function () {
     if ($('#theme').hasClass('light-background')) {
@@ -192,35 +209,52 @@ $(document).on('click', '.pop-up-close', function () {
 
 
 // THEME CHANGE
+const darkThemeStyle = function (){
+    $('#theme').addClass('dark-background').removeClass('light-background');
+    $('#maxify').css('text-shadow', '3px 3px rgb(99, 99, 99)');
+    $('.links').addClass('links-dark')
+    $('.input-group-text').addClass('input-group-text-dark')
+    $('.form-control').addClass('form-control-dark')
+    $('.task-text').addClass('task-text-dark')
+    $('.fa-check').addClass('fa-check-dark')
+    $('.pop-up-trophy').addClass('pop-up-trophy-dark')
+    $('.trophy-div').addClass('trophy-div-dark')
+}
+
+const lightThemeStyle = function (){
+    $('#theme').addClass('light-background').removeClass('dark-background')
+    $('#maxify').css('text-shadow', '3px 3px rgb(43, 35, 155)');
+    $('.links').removeClass('links-dark')
+    $('.input-group-text').removeClass('input-group-text-dark')
+    $('.form-control').removeClass('form-control-dark')
+    $('.task-text').removeClass('task-text-dark')
+    $('.fa-check').removeClass('fa-check-dark')
+    $('.pop-up-trophy').removeClass('pop-up-trophy-dark')
+    $('.trophy-div').removeClass('trophy-div-dark')
+}
+
+
 $(document).on('click', '.fa-adjust', function () {
     if ($('#theme').hasClass('light-background')) {
-        $('#theme').addClass('dark-background').removeClass('light-background');
-        $('#maxify').css('text-shadow', '3px 3px rgb(99, 99, 99)');
-        $('.links').addClass('links-dark')
-        $('.input-group-text').addClass('input-group-text-dark')
-        $('.form-control').addClass('form-control-dark')
-        //$('.form-edit').addClass('form-edit-dark')
-        $('.task-text').addClass('task-text-dark')
-        $('.fa-check').addClass('fa-check-dark')
-        $('.pop-up-trophy').addClass('pop-up-trophy-dark')
-        $('.trophy-div').addClass('trophy-div-dark')
+        darkThemeStyle()
+        localStorage.setItem('theme', 'dark')
 
     } else if ($('#theme').hasClass('dark-background')) {
-        $('#theme').addClass('light-background').removeClass('dark-background')
-        $('#maxify').css('text-shadow', '3px 3px rgb(43, 35, 155)');
-        $('.links').removeClass('links-dark')
-        $('.input-group-text').removeClass('input-group-text-dark')
-        $('.form-control').removeClass('form-control-dark')
-        //$('.form-edit').removeClass('form-edit-dark')
-        $('.task-text').removeClass('task-text-dark')
-        $('.fa-check').removeClass('fa-check-dark')
-        $('.pop-up-trophy').removeClass('pop-up-trophy-dark')
-        $('.trophy-div').removeClass('trophy-div-dark')
-
+        lightThemeStyle()
+        localStorage.setItem('theme', 'light')
     }
 })
 
 
+$( document ).ready(function(){
+    let theme = localStorage.getItem('theme')
+    if(theme == 'dark'){
+        darkThemeStyle()
+    } else if (theme == 'light'){
+        lightThemeStyle()
+    }
+})
 
 
+  
 
