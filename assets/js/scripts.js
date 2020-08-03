@@ -61,9 +61,10 @@ $(document).on("keypress", '#main-input', function (event) {
 
 //DELETE BUTTON
 $(document).on('click', '.fa-trash', function () {
-    const taskQuery = $(this).closest('.task')
-    taskQuery.remove();
-    let dataIndex = taskQuery.data("index")
+    const $task = $(this).closest('.task')
+    $task.remove();
+    /*change to local storage below*/
+    const dataIndex = $task.data("index")
     delete storagedTasks[dataIndex]
     localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks))
 });
@@ -82,11 +83,11 @@ $(document).on('click', '.fa-check', function () {
 //EDIT BUTTON
 const overlay = `<div id="overlay"><div class="input-group input-edit">
 <input type="text" class="form-control form-edit"><div class="input-group-append">
-<span class="input-group-text"><i class="fa fa-pencil edited-task"></i></span></div></div></div>`
+<span class="input-group-text"><i class="fa fa-pencil"></i></span></div></div></div>`
 const overlayDark = `<div id="overlay"><div class="input-group input-edit">
 <input type="text" class="form-control form-edit form-control-dark form-edit-dark">
 <div class="input-group-append"><span class="input-group-text input-group-text-dark">
-<i class="fa fa-pencil edited-task"></i></span></div></div></div>`
+<i class="fa fa-pencil"></i></span></div></div></div>`
 
 $(document).on('click', '.fa-edit', function () { 
     if ($('#theme').hasClass('light-background')) {
@@ -102,11 +103,16 @@ $(document).on('click', '.fa-edit', function () {
 function onEdit($task, $overlay) { /* edit task function*/ 
     const currentValue = $task.find('p').text()
     $overlay.find('.form-edit').val(currentValue)
-    $overlay.find('.edited-task').click(function () {
+    $overlay.find('.fa-pencil').click(function () {
         let editedTask = $overlay.find('.form-edit').val();
         if (editedTask) {
             $task.find('p').text(editedTask)
             $overlay.remove()
+            /*change to local storage below*/
+            const dataIndex = $task.data("index")
+            storagedTasks[dataIndex] = editedTask;
+            localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks))
+
         } else {
             alert("Task cannot be empty!")
         }
@@ -255,9 +261,6 @@ $( document ).ready(function(){ /* users theme prefence*/
     } else if (theme == 'light'){
         lightThemeStyle()
     }
-
-
-    
 })
 
 
