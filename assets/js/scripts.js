@@ -1,5 +1,6 @@
 //ADD TASKS
-let index = 1;
+let index = 0;
+
 function taskBlock(){
     if($('#theme').hasClass('light-background')){
         let newTaskText = $('.form-control').val();
@@ -8,7 +9,10 @@ function taskBlock(){
         </i></span></div><div class="task-text"><p>${newTaskText}</p></div><div class="input-group-append">
         <span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text">
         <i class="fa fa-trash"></i></span></div></div></div>`;
-        storagedTasks[index] = newTaskText;
+        storagedTasks.push({
+            text: newTaskText,
+            completed: false,
+        });
         localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
         $('.task-list').append(htmlDivBlock)
         
@@ -20,7 +24,10 @@ function taskBlock(){
         <p>${newTaskText}</p></div><div class="input-group-append"><span class="input-group-text input-group-text-dark">
         <i class="fa fa-edit"></i></span><span class="input-group-text input-group-text-dark">
         <i class="fa fa-trash"></i></span></div></div></div>`
-        storagedTasks[index] = newTaskText;
+        storagedTasks.push([{
+            text: newTaskText,
+            completed: false,
+        }]);
         localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
         $('.task-list').append(htmlDivBlock)
     }
@@ -110,8 +117,14 @@ function onEdit($task, $overlay) { /* edit task function*/
             $overlay.remove()
             /*change to local storage below*/
             const dataIndex = $task.data("index")
-            storagedTasks[dataIndex] = editedTask;
-            localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks))
+            let tasks = JSON.parse(localStorage.getItem('storagedTasks'))
+            tasks = tasks.map(function(task, index){
+                if(dataIndex === index){
+                    task.text = editedTask
+                }
+                return task
+            })
+            localStorage.setItem('storagedTasks', JSON.stringify(tasks))
 
         } else {
             alert("Task cannot be empty!")
@@ -209,7 +222,7 @@ $(document).one("click", '.fa-pencil', function () { /* edited task trophy*/
     }
 });
 
-$(document).on('click', '.pop-up-close', function () {
+$(document).on('click', '.pop-up-close', function () { /*close popup after a trophy is awarded*/
     $('.pop-up-trophy').css('display', 'none')
 })
 
@@ -264,30 +277,33 @@ $( document ).ready(function(){ /* users theme prefence*/
 })
 
 
-let storagedTasks = {};
-let retrieveTasks = JSON.parse(localStorage.getItem('storagedTasks'));
-let taskList = Object.entries(retrieveTasks)
+let storagedTasks = []; 
+let retrieveTasks = JSON.parse(localStorage.getItem('storagedTasks')) || [];
+//let taskList = Object.entries(retrieveTasks)
 
-for (const [indexNum, text] of taskList) {
-    if($('#theme').hasClass('light-background')){
+for (const [indexNum, task] of retrieveTasks.entries()) {
+
+    /* saved tasks will load on refresh*/
+    if ($('#theme').hasClass('light-background')) {
         let htmlDivBlock = `<div class="task" data-index="${indexNum}"><div class="input-group">
         <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off">
-        </i></span></div><div class="task-text"><p>${text}</p></div><div class="input-group-append">
+        </i></span></div><div class="task-text"><p>${task.text}</p></div><div class="input-group-append">
         <span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text">
         <i class="fa fa-trash"></i></span></div></div></div>`;
         $('.task-list').append(htmlDivBlock)
-        storagedTasks[index] = text;
         index++
-        
-    }else if ($('#theme').hasClass('dark-background')) {
+
+    } else if ($('#theme').hasClass('dark-background')) {
         let htmlDivBlock = `<div class="task" data-index="${indexNum}"><div class="input-group">
         <div class="input-group-prepend"><span class="input-group-text input-group-text-dark">
         <i class="fa fa-check fa-check-dark off"></i></span></div><div class="task-text task-text-dark">
-        <p>${text}</p></div><div class="input-group-append"><span class="input-group-text input-group-text-dark">
+        <p>${task.text}</p></div><div class="input-group-append"><span class="input-group-text input-group-text-dark">
         <i class="fa fa-edit"></i></span><span class="input-group-text input-group-text-dark">
         <i class="fa fa-trash"></i></span></div></div></div>`
         $('.task-list').append(htmlDivBlock)
-        storagedTasks[index] = text;
         index++
     }
-  }
+}
+
+
+

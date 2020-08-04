@@ -18,8 +18,8 @@ The website has five main features:
  - 
  
 ### Features Left to Implement
- - Add a client-side cache to store the preferences and tasks of the user.
  - Add a calendar API to track and trace tasks. 
+ - Add more levels for the achievements system.
 
 ## Technologies Used
 
@@ -78,6 +78,7 @@ For deployment follow this steps:
 - To [w3shools](https://www.w3schools.com/)
 - To [MDN web docs](https://developer.mozilla.org/)
 - To [Stack Overflow](https://stackoverflow.com/)
+- To [Dynamic Web Coding](https://www.dyn-web.com/)
 - To [Diego Marmol](https://github.com/dmmarmol)
 - To [Font Awesome](https://fontawesome.com/)
 
