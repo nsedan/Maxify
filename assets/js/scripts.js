@@ -10,6 +10,7 @@ function taskBlock(){
         <span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text">
         <i class="fa fa-trash"></i></span></div></div></div>`;
         storagedTasks.push({
+            number: index,
             text: newTaskText,
             completed: false,
         });
@@ -25,6 +26,7 @@ function taskBlock(){
         <i class="fa fa-edit"></i></span><span class="input-group-text input-group-text-dark">
         <i class="fa fa-trash"></i></span></div></div></div>`
         storagedTasks.push([{
+            number: index,
             text: newTaskText,
             completed: false,
         }]);
@@ -71,9 +73,39 @@ $(document).on('click', '.fa-trash', function () {
     const $task = $(this).closest('.task')
     $task.remove();
     /*change to local storage below*/
+    
+    //find dataindex property in LS
+    //bring array index equal to the dataindex
+    //delete that index from the array
+    //update LS //localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks))
+
+
     const dataIndex = $task.data("index")
-    delete storagedTasks[dataIndex]
-    localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks))
+
+    for ([number, task] of retrieveTasks.entries()) {
+
+        if (number === dataIndex) {
+            console.log(storagedTasks)
+            console.log(number)
+            console.log(task.text)
+            console.log(task.completed)
+            storagedTasks.pop();
+            console.log(storagedTasks)
+            return false
+        }
+    }
+    
+    let tasks = JSON.parse(localStorage.getItem('storagedTasks'))
+    
+    tasks = tasks.filter(function(tasks, index) {
+        if (number === dataIndex) {
+            return false; 
+        }
+        return true; 
+    })
+
+    
+
 });
 
 
@@ -122,6 +154,7 @@ function onEdit($task, $overlay) { /* edit task function*/
                 if(dataIndex === index){
                     task.text = editedTask
                 }
+
                 return task
             })
             localStorage.setItem('storagedTasks', JSON.stringify(tasks))
@@ -274,18 +307,19 @@ $( document ).ready(function(){ /* users theme prefence*/
     } else if (theme == 'light'){
         lightThemeStyle()
     }
+    storagedTasks = retrieveTasks
+    
 })
 
 
 let storagedTasks = []; 
 let retrieveTasks = JSON.parse(localStorage.getItem('storagedTasks')) || [];
-//let taskList = Object.entries(retrieveTasks)
 
-for (const [indexNum, task] of retrieveTasks.entries()) {
+for (const [dataindex, task] of retrieveTasks.entries()) {
 
     /* saved tasks will load on refresh*/
     if ($('#theme').hasClass('light-background')) {
-        let htmlDivBlock = `<div class="task" data-index="${indexNum}"><div class="input-group">
+        let htmlDivBlock = `<div class="task" data-index="${dataindex}"><div class="input-group">
         <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off">
         </i></span></div><div class="task-text"><p>${task.text}</p></div><div class="input-group-append">
         <span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text">
@@ -294,7 +328,7 @@ for (const [indexNum, task] of retrieveTasks.entries()) {
         index++
 
     } else if ($('#theme').hasClass('dark-background')) {
-        let htmlDivBlock = `<div class="task" data-index="${indexNum}"><div class="input-group">
+        let htmlDivBlock = `<div class="task" data-index="${dataindex}"><div class="input-group">
         <div class="input-group-prepend"><span class="input-group-text input-group-text-dark">
         <i class="fa fa-check fa-check-dark off"></i></span></div><div class="task-text task-text-dark">
         <p>${task.text}</p></div><div class="input-group-append"><span class="input-group-text input-group-text-dark">
@@ -304,6 +338,3 @@ for (const [indexNum, task] of retrieveTasks.entries()) {
         index++
     }
 }
-
-
-
