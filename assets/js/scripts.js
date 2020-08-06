@@ -22,7 +22,6 @@ $(document).ready(function () { /* users theme prefence*/
                 }
             });
         }
-
         /* saved tasks will load on refresh*/
         if ($('#theme').hasClass('light-background')) {
             let taskBlock = `<div class="task" data-index="${lsIndex}"><div class="input-group">
@@ -120,41 +119,27 @@ $(document).on("keypress", '#main-input', function (event) {
 $(document).on('click', '.fa-trash', function () {
     const $task = $(this).closest('.task')
     $task.remove();
-    /*change to local storage below*/
-
-    //find dataindex property in LS
-    //bring array index equal to the dataindex
-    //delete that index from the array
-    //update LS //localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks))
-
-
-    const dataIndex = $task.data("index")
-    /*
-        for ([lsIndex, task] of retrieveTasks.entries()) {
-    
-            if (lsIndex === dataIndex) {
-                console.log(storagedTasks)
-                console.log(lsIndex)
-                console.log(task.text)
-                console.log(task.completed)
-                storagedTasks.pop();    
-                console.log(storagedTasks)
-                return false
-            }
+    storagedTasks = []
+    $('.task').each(function () {
+        let index = $(this).data('index')
+        let text = $(this).find('p').text()
+        let status;
+        if ($(this).find('i').hasClass('off')) {
+            status = false
+        } else {
+            status = true
         }
-        
-        let tasks = JSON.parse(localStorage.getItem('storagedTasks'))
-        
-        tasks = tasks.filter(function(tasks, index) {
-            if (lsIndex === dataIndex) {
-                return false; 
-            }
-            return true; 
-        })
-    */
-
+        storagedTasks.push({
+            lsIndex: index,
+            text: text,
+            completed: status,
+        });
+    });
+    localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
 
 });
+
+
 
 //CHECK BUTTON
 $(document).on('click', '.fa-check', function () {
@@ -306,9 +291,9 @@ $(document).one("click", '.fa-check', function () { /* completed task trophy*/
 
 $(document).one("click", '.fa-pencil', function () { /* edited task trophy*/
     const trophy4 = `<div class="pop-up-trophy"><p class="pop-up-close">x</p>
-    <h6>You edited a task and earned another trophy!</h6></div>`
+    <h6>Now you know how to edit a task. You earned another trophy!</h6></div>`
     const trophy4Dark = `<div class="pop-up-trophy pop-up-trophy-dark"><p class="pop-up-close">x</p>
-    <h6>You edited a task and earned another trophy!</h6></div>`
+    <h6>Now you know how to edit a task. You earned another trophy!</h6></div>`
 
     if ($('#theme').hasClass('light-background')) {
         $('.pop-up-trophy').remove()
