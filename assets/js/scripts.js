@@ -367,4 +367,3 @@ $(document).on('click', '.fa-adjust', function () { /*change theme preference fu
     }
 })
 
-
