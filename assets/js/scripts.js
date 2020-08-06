@@ -1,37 +1,85 @@
-//ADD TASKS
 let index = 0;
+let storagedTasks = [];
+let retrieveTasks = JSON.parse(localStorage.getItem('storagedTasks')) || [];
 
-function taskBlock(){
-    if($('#theme').hasClass('light-background')){
+// LOCAL STORAGE
+$(document).ready(function () { /* users theme prefence*/
+    let theme = localStorage.getItem('theme')
+    if (theme == 'dark') {
+        darkThemeStyle()
+    } else if (theme == 'light') {
+        lightThemeStyle()
+    }
+    storagedTasks = retrieveTasks
+
+    for (const [lsIndex, task] of retrieveTasks.entries()) {
+        function completedTask() {
+            $('.task').each(function () {
+                if (task.completed === true) {
+                    if ($(this).data('index') === lsIndex) {
+                        $(this).find('.fa-check').removeClass('off').addClass('on');
+                    }
+                }
+            });
+        }
+
+        /* saved tasks will load on refresh*/
+        if ($('#theme').hasClass('light-background')) {
+            let taskBlock = `<div class="task" data-index="${lsIndex}"><div class="input-group">
+            <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off">
+            </i></span></div><div class="task-text"><p>${task.text}</p></div><div class="input-group-append">
+            <span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text">
+            <i class="fa fa-trash"></i></span></div></div></div>`;
+            $('.task-list').append(taskBlock)
+            completedTask()
+            index++
+
+        } else if ($('#theme').hasClass('dark-background')) {
+            let taskBlock = `<div class="task" data-index="${lsIndex}"><div class="input-group">
+            <div class="input-group-prepend"><span class="input-group-text input-group-text-dark">
+            <i class="fa fa-check fa-check-dark off"></i></span></div><div class="task-text task-text-dark">
+            <p>${task.text}</p></div><div class="input-group-append"><span class="input-group-text input-group-text-dark">
+            <i class="fa fa-edit"></i></span><span class="input-group-text input-group-text-dark">
+            <i class="fa fa-trash"></i></span></div></div></div>`
+            $('.task-list').append(taskBlock)
+            completedTask()
+            index++
+        }
+    }
+})
+
+//ADD TASKS
+function taskBlock() {
+    if ($('#theme').hasClass('light-background')) {
         let newTaskText = $('.form-control').val();
-        let htmlDivBlock = `<div class="task" data-index="${index}"><div class="input-group">
+        let taskBlock = `<div class="task" data-index="${index}"><div class="input-group">
         <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off">
         </i></span></div><div class="task-text"><p>${newTaskText}</p></div><div class="input-group-append">
         <span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text">
         <i class="fa fa-trash"></i></span></div></div></div>`;
         storagedTasks.push({
-            number: index,
+            lsIndex: index,
             text: newTaskText,
             completed: false,
         });
         localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
-        $('.task-list').append(htmlDivBlock)
-        
-    }else if ($('#theme').hasClass('dark-background')) {
+        $('.task-list').append(taskBlock)
+
+    } else if ($('#theme').hasClass('dark-background')) {
         let newTaskText = $('.form-control').val();
-        let htmlDivBlock = `<div class="task" data-index="${index}"><div class="input-group">
+        let taskBlock = `<div class="task" data-index="${index}"><div class="input-group">
         <div class="input-group-prepend"><span class="input-group-text input-group-text-dark">
         <i class="fa fa-check fa-check-dark off"></i></span></div><div class="task-text task-text-dark">
         <p>${newTaskText}</p></div><div class="input-group-append"><span class="input-group-text input-group-text-dark">
         <i class="fa fa-edit"></i></span><span class="input-group-text input-group-text-dark">
         <i class="fa fa-trash"></i></span></div></div></div>`
         storagedTasks.push([{
-            number: index,
+            lsIndex: index,
             text: newTaskText,
             completed: false,
         }]);
         localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
-        $('.task-list').append(htmlDivBlock)
+        $('.task-list').append(taskBlock)
     }
 }
 
@@ -73,7 +121,7 @@ $(document).on('click', '.fa-trash', function () {
     const $task = $(this).closest('.task')
     $task.remove();
     /*change to local storage below*/
-    
+
     //find dataindex property in LS
     //bring array index equal to the dataindex
     //delete that index from the array
@@ -81,40 +129,56 @@ $(document).on('click', '.fa-trash', function () {
 
 
     const dataIndex = $task.data("index")
-
-    for ([number, task] of retrieveTasks.entries()) {
-
-        if (number === dataIndex) {
-            console.log(storagedTasks)
-            console.log(number)
-            console.log(task.text)
-            console.log(task.completed)
-            storagedTasks.pop();
-            console.log(storagedTasks)
-            return false
+    /*
+        for ([lsIndex, task] of retrieveTasks.entries()) {
+    
+            if (lsIndex === dataIndex) {
+                console.log(storagedTasks)
+                console.log(lsIndex)
+                console.log(task.text)
+                console.log(task.completed)
+                storagedTasks.pop();    
+                console.log(storagedTasks)
+                return false
+            }
         }
-    }
-    
-    let tasks = JSON.parse(localStorage.getItem('storagedTasks'))
-    
-    tasks = tasks.filter(function(tasks, index) {
-        if (number === dataIndex) {
-            return false; 
-        }
-        return true; 
-    })
+        
+        let tasks = JSON.parse(localStorage.getItem('storagedTasks'))
+        
+        tasks = tasks.filter(function(tasks, index) {
+            if (lsIndex === dataIndex) {
+                return false; 
+            }
+            return true; 
+        })
+    */
 
-    
 
 });
 
-
 //CHECK BUTTON
 $(document).on('click', '.fa-check', function () {
+    const $task = $(this).closest('.task')
+    const dataIndex = $task.data("index")
     if ($(this).hasClass('off')) {
         $(this).removeClass('off').addClass('on');
+        for ([lsIndex, task] of retrieveTasks.entries()) {
+            if (lsIndex === dataIndex) {
+                task.completed = true
+                localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
+                return false
+            }
+        }
+
     } else if ($(this).hasClass('on')) {
         $(this).removeClass('on').addClass('off')
+        for ([lsIndex, task] of retrieveTasks.entries()) {
+            if (lsIndex === dataIndex) {
+                task.completed = false
+                localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
+                return false
+            }
+        }
     }
 });
 
@@ -128,7 +192,7 @@ const overlayDark = `<div id="overlay"><div class="input-group input-edit">
 <div class="input-group-append"><span class="input-group-text input-group-text-dark">
 <i class="fa fa-pencil"></i></span></div></div></div>`
 
-$(document).on('click', '.fa-edit', function () { 
+$(document).on('click', '.fa-edit', function () {
     if ($('#theme').hasClass('light-background')) {
         $('.tasks-main').append(overlay)
     } else if ($('#theme').hasClass('dark-background')) {
@@ -139,7 +203,7 @@ $(document).on('click', '.fa-edit', function () {
     onEdit($task, $overlay)
 });
 
-function onEdit($task, $overlay) { /* edit task function*/ 
+function onEdit($task, $overlay) { /* edit task function*/
     const currentValue = $task.find('p').text()
     $overlay.find('.form-edit').val(currentValue)
     $overlay.find('.fa-pencil').click(function () {
@@ -150,15 +214,13 @@ function onEdit($task, $overlay) { /* edit task function*/
             /*change to local storage below*/
             const dataIndex = $task.data("index")
             let tasks = JSON.parse(localStorage.getItem('storagedTasks'))
-            tasks = tasks.map(function(task, index){
-                if(dataIndex === index){
+            tasks = tasks.map(function (task, index) {
+                if (dataIndex === index) {
                     task.text = editedTask
                 }
-
                 return task
             })
             localStorage.setItem('storagedTasks', JSON.stringify(tasks))
-
         } else {
             alert("Task cannot be empty!")
         }
@@ -178,12 +240,13 @@ $(document).on('click', '.fa-home', function () {
     $('.pop-up-trophy').remove()
 })
 
-const completed = ' <span style="color: rgba(255, 0, 0, 0.8); text-decoration: none">COMPLETED</span>'
+const completed = '<span style="color: rgba(255, 0, 0, 0.8); text-decoration: none"> COMPLETED</span>'
 
 let trophy1Awarded = false;
 
 const firstTrophyPopUp = function () {
-    const trophy1 = '<div class="pop-up-trophy"><p class="pop-up-close">x</p><h6>Congratulations on creating your first task!</h6><h6>You just earned a trophy!</h6></div>'
+    const trophy1 = `<div class="pop-up-trophy"><p class="pop-up-close">x</p>
+    <h6>Congratulations on creating your first task!</h6><h6>You just earned a trophy!</h6></div>`
     setTimeout(function () {
         $('#trophy1').html('<span style="text-decoration: line-through;">Add a task!</span>' + completed);
         $('header').append(trophy1)
@@ -191,7 +254,8 @@ const firstTrophyPopUp = function () {
 };
 
 const firstTrophyDarkPopUp = function () {
-    const trophy1 = '<div class="pop-up-trophy pop-up-trophy-dark"><p class="pop-up-close">x</p><h6>Congratulations on creating your first task!</h6><h6>You just earned a trophy!</h6></div>'
+    const trophy1 = `<div class="pop-up-trophy pop-up-trophy-dark"><p class="pop-up-close">x</p>
+    <h6>Congratulations on creating your first task!</h6><h6>You just earned a trophy!</h6></div>`
     setTimeout(function () {
         $('#trophy1').html('<span style="text-decoration: line-through;">Add a task!</span>' + completed);
         $('header').append(trophy1)
@@ -199,8 +263,10 @@ const firstTrophyDarkPopUp = function () {
 };
 
 $(document).one("click", '.fa-trash', function () { /* deleted task trophy*/
-    const trophy2 = '<div class="pop-up-trophy"><p class="pop-up-close">x</p><h6>You deleted a task and earned a trophy!</h6></div>'
-    const trophy2Dark = '<div class="pop-up-trophy pop-up-trophy-dark"><p class="pop-up-close">x</p><h6>You deleted a task and earned a trophy!</h6></div>'
+    const trophy2 = `<div class="pop-up-trophy"><p class="pop-up-close">x</p>
+    <h6>You deleted a task and earned a trophy!</h6></div>`
+    const trophy2Dark = `<div class="pop-up-trophy pop-up-trophy-dark">
+    <p class="pop-up-close">x</p><h6>You deleted a task and earned a trophy!</h6></div>`
 
     if ($('#theme').hasClass('light-background')) {
         $('.pop-up-trophy').remove()
@@ -218,8 +284,10 @@ $(document).one("click", '.fa-trash', function () { /* deleted task trophy*/
 });
 
 $(document).one("click", '.fa-check', function () { /* completed task trophy*/
-    const trophy3 = '<div class="pop-up-trophy"><p class="pop-up-close">x</p><h6>Kudos on finishing your first task!</h6><h6>You just earned a trophy!</h6></div>'
-    const trophy3Dark = '<div class="pop-up-trophy pop-up-trophy-dark"><p class="pop-up-close">x</p><h6>Kudos on finishing your first task!</h6><h6>You just earned a trophy!</h6></div>'
+    const trophy3 = `<div class="pop-up-trophy"><p class="pop-up-close">x</p>
+    <h6>Kudos on finishing your first task!</h6><h6>You just earned a trophy!</h6></div>`
+    const trophy3Dark = `<div class="pop-up-trophy pop-up-trophy-dark"><p class="pop-up-close">x</p>
+    <h6>Kudos on finishing your first task!</h6><h6>You just earned a trophy!</h6></div>`
 
     if ($('#theme').hasClass('light-background')) {
         $('.pop-up-trophy').remove()
@@ -237,8 +305,10 @@ $(document).one("click", '.fa-check', function () { /* completed task trophy*/
 });
 
 $(document).one("click", '.fa-pencil', function () { /* edited task trophy*/
-    const trophy4 = '<div class="pop-up-trophy"><p class="pop-up-close">x</p><h6>You edited a task and earned another trophy!</h6></div>'
-    const trophy4Dark = '<div class="pop-up-trophy pop-up-trophy-dark"><p class="pop-up-close">x</p><h6>You edited a task and earned another trophy!</h6></div>'
+    const trophy4 = `<div class="pop-up-trophy"><p class="pop-up-close">x</p>
+    <h6>You edited a task and earned another trophy!</h6></div>`
+    const trophy4Dark = `<div class="pop-up-trophy pop-up-trophy-dark"><p class="pop-up-close">x</p>
+    <h6>You edited a task and earned another trophy!</h6></div>`
 
     if ($('#theme').hasClass('light-background')) {
         $('.pop-up-trophy').remove()
@@ -261,7 +331,7 @@ $(document).on('click', '.pop-up-close', function () { /*close popup after a tro
 
 
 // THEME CHANGE
-const darkThemeStyle = function (){
+const darkThemeStyle = function () {
     $('#theme').addClass('dark-background').removeClass('light-background');
     $('#maxify').css('text-shadow', '3px 3px rgb(99, 99, 99)');
     $('.links').addClass('links-dark')
@@ -273,7 +343,7 @@ const darkThemeStyle = function (){
     $('.trophy-div').addClass('trophy-div-dark')
 }
 
-const lightThemeStyle = function (){
+const lightThemeStyle = function () {
     $('#theme').addClass('light-background').removeClass('dark-background')
     $('#maxify').css('text-shadow', '3px 3px rgb(43, 35, 155)');
     $('.links').removeClass('links-dark')
@@ -286,7 +356,7 @@ const lightThemeStyle = function (){
 }
 
 
-$(document).on('click', '.fa-adjust', function () { /*change theme preference function*/ 
+$(document).on('click', '.fa-adjust', function () { /*change theme preference function*/
     if ($('#theme').hasClass('light-background')) {
         darkThemeStyle()
         localStorage.setItem('theme', 'dark')
@@ -298,43 +368,3 @@ $(document).on('click', '.fa-adjust', function () { /*change theme preference fu
 })
 
 
-// LOCAL STORAGE
-
-$( document ).ready(function(){ /* users theme prefence*/
-    let theme = localStorage.getItem('theme')
-    if(theme == 'dark'){
-        darkThemeStyle()
-    } else if (theme == 'light'){
-        lightThemeStyle()
-    }
-    storagedTasks = retrieveTasks
-    
-})
-
-
-let storagedTasks = []; 
-let retrieveTasks = JSON.parse(localStorage.getItem('storagedTasks')) || [];
-
-for (const [dataindex, task] of retrieveTasks.entries()) {
-
-    /* saved tasks will load on refresh*/
-    if ($('#theme').hasClass('light-background')) {
-        let htmlDivBlock = `<div class="task" data-index="${dataindex}"><div class="input-group">
-        <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-check off">
-        </i></span></div><div class="task-text"><p>${task.text}</p></div><div class="input-group-append">
-        <span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text">
-        <i class="fa fa-trash"></i></span></div></div></div>`;
-        $('.task-list').append(htmlDivBlock)
-        index++
-
-    } else if ($('#theme').hasClass('dark-background')) {
-        let htmlDivBlock = `<div class="task" data-index="${dataindex}"><div class="input-group">
-        <div class="input-group-prepend"><span class="input-group-text input-group-text-dark">
-        <i class="fa fa-check fa-check-dark off"></i></span></div><div class="task-text task-text-dark">
-        <p>${task.text}</p></div><div class="input-group-append"><span class="input-group-text input-group-text-dark">
-        <i class="fa fa-edit"></i></span><span class="input-group-text input-group-text-dark">
-        <i class="fa fa-trash"></i></span></div></div></div>`
-        $('.task-list').append(htmlDivBlock)
-        index++
-    }
-}
