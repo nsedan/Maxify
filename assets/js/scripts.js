@@ -72,11 +72,11 @@ function taskBlock() {
         <p>${newTaskText}</p></div><div class="input-group-append"><span class="input-group-text input-group-text-dark">
         <i class="fa fa-edit"></i></span><span class="input-group-text input-group-text-dark">
         <i class="fa fa-trash"></i></span></div></div></div>`
-        storagedTasks.push([{
+        storagedTasks.push({
             lsIndex: index,
             text: newTaskText,
             completed: false,
-        }]);
+        });
         localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
         $('.task-list').append(taskBlock)
     }
