@@ -131,6 +131,7 @@ $(document).on('click', '.fa-trash', function () {
             completed: status,
         });
     });
+    retrieveTasks = storagedTasks
     localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
 
 });
