@@ -141,11 +141,13 @@ $(document).on('click', '.fa-trash', function () {
 //CHECK BUTTON
 $(document).on('click', '.fa-check', function () {
     const $task = $(this).closest('.task')
+    const text = ($task.find('p').text())
     const dataIndex = $task.data("index")
     if ($(this).hasClass('off')) {
         $(this).removeClass('off').addClass('on');
         for ([lsIndex, task] of retrieveTasks.entries()) {
             if (lsIndex === dataIndex) {
+                task.text = text
                 task.completed = true
                 localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
                 return false
@@ -156,6 +158,7 @@ $(document).on('click', '.fa-check', function () {
         $(this).removeClass('on').addClass('off')
         for ([lsIndex, task] of retrieveTasks.entries()) {
             if (lsIndex === dataIndex) {
+                task.text = text
                 task.completed = false
                 localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
                 return false
