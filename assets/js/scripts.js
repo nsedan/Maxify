@@ -57,7 +57,6 @@ function taskBlock() {
         <span class="input-group-text"><i class="fa fa-edit"></i></span><span class="input-group-text">
         <i class="fa fa-trash"></i></span></div></div></div>`;
         storagedTasks.push({
-            lsIndex: index,
             text: newTaskText,
             completed: false,
         });
@@ -73,7 +72,6 @@ function taskBlock() {
         <i class="fa fa-edit"></i></span><span class="input-group-text input-group-text-dark">
         <i class="fa fa-trash"></i></span></div></div></div>`
         storagedTasks.push({
-            lsIndex: index,
             text: newTaskText,
             completed: false,
         });
@@ -119,9 +117,9 @@ $(document).on("keypress", '#main-input', function (event) {
 $(document).on('click', '.fa-trash', function () {
     const $task = $(this).closest('.task')
     $task.remove();
+    /*delete from local storage*/
     storagedTasks = []
     $('.task').each(function () {
-        let index = $(this).data('index')
         let text = $(this).find('p').text()
         let status;
         if ($(this).find('i').hasClass('off')) {
@@ -130,7 +128,6 @@ $(document).on('click', '.fa-trash', function () {
             status = true
         }
         storagedTasks.push({
-            lsIndex: index,
             text: text,
             completed: status,
         });
