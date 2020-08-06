@@ -144,24 +144,26 @@ $(document).on('click', '.fa-check', function () {
     const dataIndex = $task.data("index")
     if ($(this).hasClass('off')) {
         $(this).removeClass('off').addClass('on');
-        for ([lsIndex, task] of retrieveTasks.entries()) {
+        for ([lsIndex, task] of storagedTasks.entries()) {
             if (lsIndex === dataIndex) {
                 task.text = text
                 task.completed = true
+                localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
                 return false
             }
         }
+
     } else if ($(this).hasClass('on')) {
         $(this).removeClass('on').addClass('off')
-        for ([lsIndex, task] of retrieveTasks.entries()) {
+        for ([lsIndex, task] of storagedTasks.entries()) {
             if (lsIndex === dataIndex) {
                 task.text = text
                 task.completed = false
+                localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
                 return false
             }
         }
     }
-    localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
 });
 
 
@@ -202,6 +204,7 @@ function onEdit($task, $overlay) { /* edit task function*/
                 }
                 return task
             })
+            storagedTasks = tasks
             localStorage.setItem('storagedTasks', JSON.stringify(tasks))
         } else {
             alert("Task cannot be empty!")
