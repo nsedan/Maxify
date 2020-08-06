@@ -60,7 +60,6 @@ function taskBlock() {
             text: newTaskText,
             completed: false,
         });
-        localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
         $('.task-list').append(taskBlock)
 
     } else if ($('#theme').hasClass('dark-background')) {
@@ -75,9 +74,9 @@ function taskBlock() {
             text: newTaskText,
             completed: false,
         });
-        localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
         $('.task-list').append(taskBlock)
     }
+    localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
 }
 
 function taskFunction() {/* Main function to add new tasks*/
@@ -149,22 +148,20 @@ $(document).on('click', '.fa-check', function () {
             if (lsIndex === dataIndex) {
                 task.text = text
                 task.completed = true
-                localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
                 return false
             }
         }
-
     } else if ($(this).hasClass('on')) {
         $(this).removeClass('on').addClass('off')
         for ([lsIndex, task] of retrieveTasks.entries()) {
             if (lsIndex === dataIndex) {
                 task.text = text
                 task.completed = false
-                localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
                 return false
             }
         }
     }
+    localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
 });
 
 
