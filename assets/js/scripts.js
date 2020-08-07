@@ -11,7 +11,10 @@ $(document).ready(function () { /* users theme prefence*/
         lightThemeStyle()
     }
     storagedTasks = retrieveTasks
+    reloadTasks()
+})
 
+function reloadTasks(){
     for (const [lsIndex, task] of retrieveTasks.entries()) {
         function completedTask() {
             $('.task').each(function () {
@@ -32,7 +35,7 @@ $(document).ready(function () { /* users theme prefence*/
             $('.task-list').append(taskBlock)
             completedTask()
             index++
-
+    
         } else if ($('#theme').hasClass('dark-background')) {
             let taskBlock = `<div class="task" data-index="${lsIndex}"><div class="input-group">
             <div class="input-group-prepend"><span class="input-group-text input-group-text-dark">
@@ -45,7 +48,7 @@ $(document).ready(function () { /* users theme prefence*/
             index++
         }
     }
-})
+}
 
 //ADD TASKS
 function taskBlock() {
@@ -131,21 +134,29 @@ $(document).on('click', '.fa-trash', function () {
             completed: status,
         });
     });
-    retrieveTasks = storagedTasks
     localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
-
+    location.reload();
 });
+/*
+$(document).ready( function(){
+    $('.task').each(function () {
+        const $task = $(this).closest('.task')
+        const dataIndex = $task.data("index")
 
+        console.log(dataIndex)
+    });
+})
+*/
 
 
 //CHECK BUTTON
 $(document).on('click', '.fa-check', function () {
     const $task = $(this).closest('.task')
-    const text = ($task.find('p').text())
+    const text = $task.find('p').text()
     const dataIndex = $task.data("index")
     if ($(this).hasClass('off')) {
         $(this).removeClass('off').addClass('on');
-        for ([lsIndex, task] of storagedTasks.entries()) {
+        for ([lsIndex, task] of retrieveTasks.entries()) {
             if (lsIndex === dataIndex) {
                 task.text = text
                 task.completed = true
@@ -156,7 +167,7 @@ $(document).on('click', '.fa-check', function () {
 
     } else if ($(this).hasClass('on')) {
         $(this).removeClass('on').addClass('off')
-        for ([lsIndex, task] of storagedTasks.entries()) {
+        for ([lsIndex, task] of retrieveTasks.entries()) {
             if (lsIndex === dataIndex) {
                 task.text = text
                 task.completed = false
@@ -206,6 +217,7 @@ function onEdit($task, $overlay) { /* edit task function*/
                 return task
             })
             storagedTasks = tasks
+
             localStorage.setItem('storagedTasks', JSON.stringify(tasks))
         } else {
             alert("Task cannot be empty!")
