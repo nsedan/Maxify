@@ -1,6 +1,15 @@
 let index = 0;
+
 let storagedTasks = [];
 let retrieveTasks = JSON.parse(localStorage.getItem('storagedTasks')) || [];
+
+let t1; /* trophy 1 */
+let t2; /* trophy 2 */
+let t3; /* trophy 3 */
+let t4; /* trophy 4 */
+let completedTrophies = []
+let retrieveTrophies = JSON.parse(localStorage.getItem('completedTrophies')) || [];
+
 
 // LOCAL STORAGE
 $(document).ready(function () { /* users theme prefence*/
@@ -11,10 +20,13 @@ $(document).ready(function () { /* users theme prefence*/
         lightThemeStyle()
     }
     storagedTasks = retrieveTasks
+    completedTrophies = retrieveTrophies
+    localStorage.setItem('completedTrophies', JSON.stringify(completedTrophies));
     reloadTasks()
+    reloadTrophies()
 })
 
-function reloadTasks(){
+function reloadTasks() {
     for (const [lsIndex, task] of retrieveTasks.entries()) {
         function completedTask() {
             $('.task').each(function () {
@@ -35,7 +47,7 @@ function reloadTasks(){
             $('.task-list').append(taskBlock)
             completedTask()
             index++
-    
+
         } else if ($('#theme').hasClass('dark-background')) {
             let taskBlock = `<div class="task" data-index="${lsIndex}"><div class="input-group">
             <div class="input-group-prepend"><span class="input-group-text input-group-text-dark">
@@ -49,6 +61,22 @@ function reloadTasks(){
         }
     }
 }
+
+function reloadTrophies() {
+    if (retrieveTrophies.includes('firstTaskTrophy')) {
+        $('#trophy1').html('<span style="text-decoration: line-through;">Add a task!</span>' + completed)
+    }
+    if (retrieveTrophies.includes('editTaskTrophy')) {
+        $('#trophy4').html('<span style="text-decoration: line-through;">Edit a task!</span>' + completed);
+    }
+    if (retrieveTrophies.includes('deleteTaskTrophy')) {
+        $('#trophy2').html('<span style="text-decoration: line-through;">Delete a task!</span>' + completed);
+    }
+    if (retrieveTrophies.includes('checkTaskTrophy')) {
+        $('#trophy3').html('<span style="text-decoration: line-through;">Finish a task!</span>' + completed);
+    }
+}
+
 
 //ADD TASKS
 function taskBlock() {
@@ -85,7 +113,7 @@ function taskBlock() {
 function taskFunction() {/* Main function to add new tasks*/
     $('.pop-up-trophy').remove()
     if ($('.form-control').val()) {
-        if (!trophy1Awarded) {
+        if (!retrieveTrophies.includes('firstTaskTrophy')) {
             taskBlock()
             index++
             if ($('#theme').hasClass('light-background')) {
@@ -93,7 +121,10 @@ function taskFunction() {/* Main function to add new tasks*/
             } else if ($('#theme').hasClass('dark-background')) {
                 firstTrophyDarkPopUp();
             }
-            trophy1Awarded = true
+            t1 = 'firstTaskTrophy'
+            completedTrophies.push(t1)
+            localStorage.setItem('completedTrophies', JSON.stringify(completedTrophies));
+
         } else {
             taskBlock()
             index++
@@ -135,18 +166,8 @@ $(document).on('click', '.fa-trash', function () {
         });
     });
     localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
-    location.reload();
+    //location.reload(); /* HOTFIX, not definitive bug with data-index of tasks not updating on delete */
 });
-/*
-$(document).ready( function(){
-    $('.task').each(function () {
-        const $task = $(this).closest('.task')
-        const dataIndex = $task.data("index")
-
-        console.log(dataIndex)
-    });
-})
-*/
 
 
 //CHECK BUTTON
@@ -240,8 +261,6 @@ $(document).on('click', '.fa-home', function () {
 
 const completed = '<span style="color: rgba(255, 0, 0, 0.8); text-decoration: none"> COMPLETED</span>'
 
-let trophy1Awarded = false;
-
 const firstTrophyPopUp = function () {
     const trophy1 = `<div class="pop-up-trophy"><p class="pop-up-close">x</p>
     <h6>Congratulations on creating your first task!</h6><h6>You just earned a trophy!</h6></div>`
@@ -266,18 +285,23 @@ $(document).one("click", '.fa-trash', function () { /* deleted task trophy*/
     const trophy2Dark = `<div class="pop-up-trophy pop-up-trophy-dark">
     <p class="pop-up-close">x</p><h6>You deleted a task and earned a trophy!</h6></div>`
 
-    if ($('#theme').hasClass('light-background')) {
-        $('.pop-up-trophy').remove()
-        setTimeout(function () {
-            $('#trophy2').html('<span style="text-decoration: line-through;">Delete a task!</span>' + completed);
-            $('header').append(trophy2)
-        }, 750);
-    } else if ($('#theme').hasClass('dark-background')) {
-        $('.pop-up-trophy').remove()
-        setTimeout(function () {
-            $('#trophy2').html('<span style="text-decoration: line-through;">Delete a task!</span>' + completed);
-            $('header').append(trophy2Dark)
-        }, 750);
+    if (!retrieveTrophies.includes('deleteTaskTrophy')) {
+        t2 = 'deleteTaskTrophy'
+        completedTrophies.push(t2)
+        localStorage.setItem('completedTrophies', JSON.stringify(completedTrophies));
+        if ($('#theme').hasClass('light-background')) {
+            $('.pop-up-trophy').remove()
+            setTimeout(function () {
+                $('#trophy2').html('<span style="text-decoration: line-through;">Delete a task!</span>' + completed);
+                $('header').append(trophy2)
+            }, 750);
+        } else if ($('#theme').hasClass('dark-background')) {
+            $('.pop-up-trophy').remove()
+            setTimeout(function () {
+                $('#trophy2').html('<span style="text-decoration: line-through;">Delete a task!</span>' + completed);
+                $('header').append(trophy2Dark)
+            }, 750);
+        }
     }
 });
 
@@ -287,19 +311,25 @@ $(document).one("click", '.fa-check', function () { /* completed task trophy*/
     const trophy3Dark = `<div class="pop-up-trophy pop-up-trophy-dark"><p class="pop-up-close">x</p>
     <h6>Kudos on finishing your first task!</h6><h6>You just earned a trophy!</h6></div>`
 
-    if ($('#theme').hasClass('light-background')) {
-        $('.pop-up-trophy').remove()
-        setTimeout(function () {
-            $('#trophy3').html('<span style="text-decoration: line-through;">Finish a task!</span>' + completed);
-            $('header').append(trophy3)
-        }, 750);
-    } else if ($('#theme').hasClass('dark-background')) {
-        $('.pop-up-trophy').remove()
-        setTimeout(function () {
-            $('#trophy3').html('<span style="text-decoration: line-through;">Finish a task!</span>' + completed);
-            $('header').append(trophy3Dark)
-        }, 750);
+    if (!retrieveTrophies.includes('checkTaskTrophy')) {
+        t3 = 'checkTaskTrophy'
+        completedTrophies.push(t3)
+        localStorage.setItem('completedTrophies', JSON.stringify(completedTrophies));
+        if ($('#theme').hasClass('light-background')) {
+            $('.pop-up-trophy').remove()
+            setTimeout(function () {
+                $('#trophy3').html('<span style="text-decoration: line-through;">Finish a task!</span>' + completed);
+                $('header').append(trophy3)
+            }, 750);
+        } else if ($('#theme').hasClass('dark-background')) {
+            $('.pop-up-trophy').remove()
+            setTimeout(function () {
+                $('#trophy3').html('<span style="text-decoration: line-through;">Finish a task!</span>' + completed);
+                $('header').append(trophy3Dark)
+            }, 750);
+        }
     }
+
 });
 
 $(document).one("click", '.fa-pencil', function () { /* edited task trophy*/
@@ -308,19 +338,25 @@ $(document).one("click", '.fa-pencil', function () { /* edited task trophy*/
     const trophy4Dark = `<div class="pop-up-trophy pop-up-trophy-dark"><p class="pop-up-close">x</p>
     <h6>Now you know how to edit a task. You earned another trophy!</h6></div>`
 
-    if ($('#theme').hasClass('light-background')) {
-        $('.pop-up-trophy').remove()
-        setTimeout(function () {
-            $('#trophy4').html('<span style="text-decoration: line-through;">Edit a task!</span>' + completed);
-            $('header').append(trophy4)
-        }, 750);
-    } else if ($('#theme').hasClass('dark-background')) {
-        $('.pop-up-trophy').remove()
-        setTimeout(function () {
-            $('#trophy4').html('<span style="text-decoration: line-through;">Edit a task!</span>' + completed);
-            $('header').append(trophy4Dark)
-        }, 750);
+    if (!retrieveTrophies.includes('editTaskTrophy')) {
+        t4 = 'editTaskTrophy'
+        completedTrophies.push(t4)
+        localStorage.setItem('completedTrophies', JSON.stringify(completedTrophies));
+        if ($('#theme').hasClass('light-background')) {
+            $('.pop-up-trophy').remove()
+            setTimeout(function () {
+                $('#trophy4').html('<span style="text-decoration: line-through;">Edit a task!</span>' + completed);
+                $('header').append(trophy4)
+            }, 750);
+        } else if ($('#theme').hasClass('dark-background')) {
+            $('.pop-up-trophy').remove()
+            setTimeout(function () {
+                $('#trophy4').html('<span style="text-decoration: line-through;">Edit a task!</span>' + completed);
+                $('header').append(trophy4Dark)
+            }, 750);
+        }
     }
+
 });
 
 $(document).on('click', '.pop-up-close', function () { /*close popup after a trophy is awarded*/
@@ -364,4 +400,7 @@ $(document).on('click', '.fa-adjust', function () { /*change theme preference fu
         localStorage.setItem('theme', 'light')
     }
 })
+
+
+
 
