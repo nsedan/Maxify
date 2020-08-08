@@ -51,11 +51,11 @@ The devices that this site was test were:
 
 #### Several User Tests were made throughout the project: 
 
-- The user is presented with an input with a plus sign and 3 buttons on the bottom of the page (Home, Game, Theme). When a task is added each one had a button to edit, check and delete. At this stage the footer has no functionality. The Game button was changed to a trophy for better UX.
-- Again the user is presented with an input with a plus sign and 3 buttons on the bottom of the page. After edit function is added, an user inform that this input to edit the task appears empty and not with the text of the chosen task. This is now fixed.
-- The trophy system is now added; add, complete, edit and delete; the first time the user does one of this actions a trophy is awarded. The 3 buttons of the footer contains Home, Trophies and Theme. In one test a user point out that in mobile the trophy section overlaps with the footer. This is now fixed.
-- Theme buttom added for color selection. The user now can choose between light mode or dark mode.
-- Minor changes were made for better UX throughout the development, according to user tests. Such as, light theme color changed from orange to light blue, character input limit removed, added an opaque overlay to the footer, changes in font sizes to adapts to smaller divices.
+- The user is presented with an input with a plus sign and 3 buttons on the bottom of the page (Home, Game, Theme). When a task is added each one had a button to edit, check and delete. At this stage the footer has no functionality.
+- Again the user is presented with an input with a plus sign and 3 buttons on the bottom of the page. Edit, Complete and Delete a task funcinality is now added. After edit function is added, an user inform that this input to edit the task appears empty and not with the text of the chosen task. This is now fixed.
+- The trophy system is now added; add, complete, edit and delete; the first time the user does one of this actions a trophy is awarded. The 3 buttons of the footer now contains Home, Trophies and Theme. In one test a user point out that in mobile the trophy section overlaps with the footer. This is now fixed.
+- Theme buttom functionality added for color selection. The user now can choose between light mode or dark mode.
+- Minor changes were made for better UX throughout the development, according to user tests. Such as: light theme color changed from orange to light blue, character input limit removed, added an opaque overlay to the footer, changes in font sizes to adapts to smaller divices, Game button icon was changed to a trophy.
 
 ## Contributing
 
