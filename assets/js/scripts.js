@@ -166,7 +166,9 @@ $(document).on('click', '.fa-trash', function () {
         });
     });
     localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
-    //location.reload(); /* HOTFIX, not definitive bug with data-index of tasks not updating on delete */
+    $('.task').remove()
+    retrieveTasks = storagedTasks
+    reloadTasks()
 });
 
 
