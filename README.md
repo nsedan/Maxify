@@ -89,6 +89,7 @@ For deployment follow this steps:
 - To [Dynamic Web Coding](https://www.dyn-web.com/)
 - To [Diego Marmol](https://github.com/dmmarmol)
 - To [Font Awesome](https://fontawesome.com/)
+- To [Google Chrome Developers](https://youtu.be/H0XScE08hy8)
 
 
 #### Acknowledgements

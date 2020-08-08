@@ -3,12 +3,17 @@ let index = 0;
 let storagedTasks = [];
 let retrieveTasks = JSON.parse(localStorage.getItem('storagedTasks')) || [];
 
-let t1; /* trophy 1 */
-let t2; /* trophy 2 */
-let t3; /* trophy 3 */
-let t4; /* trophy 4 */
+let t1; /* add task trophy */
+let t2; /* delete task trophy */
+let t3; /* finish a task trophy */
+let t4; /* edit task trophy */
+let t5; /* finish 10 tasks trophy */
+let t6; /* finish 20 tasks trophy */
 let completedTrophies = []
 let retrieveTrophies = JSON.parse(localStorage.getItem('completedTrophies')) || [];
+
+let finishedTasks = 0;
+let retrieveFinishedTasks = JSON.parse(localStorage.getItem('finishedTasks')) || [];
 
 
 // LOCAL STORAGE
@@ -24,6 +29,7 @@ $(document).ready(function () { /* users theme prefence*/
     localStorage.setItem('completedTrophies', JSON.stringify(completedTrophies));
     reloadTasks()
     reloadTrophies()
+    finishedTasks = retrieveFinishedTasks
 })
 
 function reloadTasks() {
@@ -75,6 +81,12 @@ function reloadTrophies() {
     if (retrieveTrophies.includes('checkTaskTrophy')) {
         $('#trophy3').html('<span style="text-decoration: line-through;">Finish a task!</span>' + completed);
     }
+    if (retrieveTrophies.includes('finish10TasksTrophy')) {
+        $('#trophy5').html('<span style="text-decoration: line-through;">Finish 10 tasks!</span>' + completed);
+    }
+    if (retrieveTrophies.includes('finish20TasksTrophy')) {
+        $('#trophy6').html('<span style="text-decoration: line-through;">Finish 20 tasks!</span>' + completed);
+    }
 }
 
 function dataIndexReset() { /* after deleting or adding a task data-index of task will order to avoid jumps in index number*/
@@ -117,7 +129,7 @@ function taskBlock() {
 }
 
 function taskFunction() {/* Main function to add new tasks*/
-    $('.pop-up-trophy').remove()
+    popupRemove()
     if ($('.form-control').val()) {
         if (!retrieveTrophies.includes('firstTaskTrophy')) {
             taskBlock()
@@ -188,7 +200,10 @@ $(document).on('click', '.fa-check', function () {
                 task.text = text
                 task.completed = true
                 localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
-                return false
+
+                finishedTasks++
+                localStorage.setItem('finishedTasks', JSON.stringify(finishedTasks));
+                finishedTasks_10n20()
             }
         }
 
@@ -199,7 +214,10 @@ $(document).on('click', '.fa-check', function () {
                 task.text = text
                 task.completed = false
                 localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
-                return false
+
+                finishedTasks--
+                localStorage.setItem('finishedTasks', JSON.stringify(finishedTasks));
+                finishedTasks_10n20()
             }
         }
     }
@@ -253,16 +271,18 @@ function onEdit($task, $overlay) { /* edit task function*/
 }
 
 //ACHIEVMENTS
+const popupRemove = () => $('.pop-up-trophy').remove()
+
 $(document).on('click', '.fa-trophy', function () {
     $('.tasks-main').css('display', 'none')
     $('.trophy-section').css('display', 'block')
-    $('.pop-up-trophy').remove()
+    popupRemove()
 })
 
 $(document).on('click', '.fa-home', function () {
     $('.tasks-main').css('display', 'block')
     $('.trophy-section').css('display', 'none')
-    $('.pop-up-trophy').remove()
+    popupRemove()
 })
 
 const completed = '<span style="color: rgba(255, 0, 0, 0.8); text-decoration: none"> COMPLETED</span>'
@@ -296,13 +316,13 @@ $(document).one("click", '.fa-trash', function () { /* deleted task trophy*/
         completedTrophies.push(t2)
         localStorage.setItem('completedTrophies', JSON.stringify(completedTrophies));
         if ($('#theme').hasClass('light-background')) {
-            $('.pop-up-trophy').remove()
+            popupRemove()
             setTimeout(function () {
                 $('#trophy2').html('<span style="text-decoration: line-through;">Delete a task!</span>' + completed);
                 $('header').append(trophy2)
             }, 750);
         } else if ($('#theme').hasClass('dark-background')) {
-            $('.pop-up-trophy').remove()
+            popupRemove()
             setTimeout(function () {
                 $('#trophy2').html('<span style="text-decoration: line-through;">Delete a task!</span>' + completed);
                 $('header').append(trophy2Dark)
@@ -322,13 +342,13 @@ $(document).one("click", '.fa-check', function () { /* completed task trophy*/
         completedTrophies.push(t3)
         localStorage.setItem('completedTrophies', JSON.stringify(completedTrophies));
         if ($('#theme').hasClass('light-background')) {
-            $('.pop-up-trophy').remove()
+            popupRemove()
             setTimeout(function () {
                 $('#trophy3').html('<span style="text-decoration: line-through;">Finish a task!</span>' + completed);
                 $('header').append(trophy3)
             }, 750);
         } else if ($('#theme').hasClass('dark-background')) {
-            $('.pop-up-trophy').remove()
+            popupRemove()
             setTimeout(function () {
                 $('#trophy3').html('<span style="text-decoration: line-through;">Finish a task!</span>' + completed);
                 $('header').append(trophy3Dark)
@@ -344,18 +364,19 @@ $(document).one("click", '.fa-pencil', function () { /* edited task trophy*/
     const trophy4Dark = `<div class="pop-up-trophy pop-up-trophy-dark"><p class="pop-up-close">x</p>
     <h6>Now you know how to edit a task. You earned another trophy!</h6></div>`
 
+
     if (!retrieveTrophies.includes('editTaskTrophy')) {
         t4 = 'editTaskTrophy'
         completedTrophies.push(t4)
         localStorage.setItem('completedTrophies', JSON.stringify(completedTrophies));
         if ($('#theme').hasClass('light-background')) {
-            $('.pop-up-trophy').remove()
+            popupRemove()
             setTimeout(function () {
                 $('#trophy4').html('<span style="text-decoration: line-through;">Edit a task!</span>' + completed);
                 $('header').append(trophy4)
             }, 750);
         } else if ($('#theme').hasClass('dark-background')) {
-            $('.pop-up-trophy').remove()
+            popupRemove()
             setTimeout(function () {
                 $('#trophy4').html('<span style="text-decoration: line-through;">Edit a task!</span>' + completed);
                 $('header').append(trophy4Dark)
@@ -364,6 +385,59 @@ $(document).one("click", '.fa-pencil', function () { /* edited task trophy*/
     }
 
 });
+
+let finishedTasks_10n20 = () => { // trophies for 10 and 20 tasks completed
+    const trophy5 = `<div class="pop-up-trophy"><p class="pop-up-close">x</p>
+    <h6>Congratulations! You have successfully completed 10 tasks.</h6></div>`
+    const trophy5Dark = `<div class="pop-up-trophy pop-up-trophy-dark"><p class="pop-up-close">x</p>
+    <h6>Congratulations! You have successfully completed 10 tasks.</h6></div>`
+    const trophy6 = `<div class="pop-up-trophy"><p class="pop-up-close">x</p>
+    <h6>Congratulations! You have successfully completed 20 tasks.</h6></div>`
+    const trophy6Dark = `<div class="pop-up-trophy pop-up-trophy-dark"><p class="pop-up-close">x</p>
+    <h6>Congratulations! You have successfully completed 20 tasks.</h6></div>`
+
+    if (!retrieveTrophies.includes('finish10TasksTrophy')) {
+        if (finishedTasks === 10) {
+            t5 = 'finish10TasksTrophy'
+            completedTrophies.push(t5)
+            localStorage.setItem('completedTrophies', JSON.stringify(completedTrophies));
+            if ($('#theme').hasClass('light-background')) {
+                popupRemove()
+                setTimeout(function () {
+                    $('#trophy5').html('<span style="text-decoration: line-through;">Finish 10 tasks!</span>' + completed);
+                    $('header').append(trophy5)
+                }, 750);
+            } else if ($('#theme').hasClass('dark-background')) {
+                popupRemove()
+                setTimeout(function () {
+                    $('#trophy5').html('<span style="text-decoration: line-through;">Finish 10 tasks!</span>' + completed);
+                    $('header').append(trophy5Dark)
+                }, 750);
+            }
+        }
+    }
+
+    if (!retrieveTrophies.includes('finish20TasksTrophy')) {
+        if (finishedTasks === 20) {
+            t6 = 'finish20TasksTrophy'
+            completedTrophies.push(t6)
+            localStorage.setItem('completedTrophies', JSON.stringify(completedTrophies));
+            if ($('#theme').hasClass('light-background')) {
+                popupRemove()
+                setTimeout(function () {
+                    $('#trophy6').html('<span style="text-decoration: line-through;">Finish 20 tasks!</span>' + completed);
+                    $('header').append(trophy6)
+                }, 750);
+            } else if ($('#theme').hasClass('dark-background')) {
+                popupRemove()
+                setTimeout(function () {
+                    $('#trophy6').html('<span style="text-decoration: line-through;">Finish 20 tasks!</span>' + completed);
+                    $('header').append(trophy6Dark)
+                }, 750);
+            }
+        }
+    }
+}
 
 $(document).on('click', '.pop-up-close', function () { /*close popup after a trophy is awarded*/
     $('.pop-up-trophy').css('display', 'none')
