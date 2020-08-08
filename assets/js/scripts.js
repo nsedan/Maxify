@@ -77,6 +77,11 @@ function reloadTrophies() {
     }
 }
 
+function dataIndexReset() { /* after deleting or adding a task data-index of task will order to avoid jumps in index number*/
+    $('.task').remove()
+    retrieveTasks = storagedTasks
+    reloadTasks()
+}
 
 //ADD TASKS
 function taskBlock() {
@@ -108,6 +113,7 @@ function taskBlock() {
         $('.task-list').append(taskBlock)
     }
     localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
+    dataIndexReset()
 }
 
 function taskFunction() {/* Main function to add new tasks*/
@@ -166,9 +172,7 @@ $(document).on('click', '.fa-trash', function () {
         });
     });
     localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
-    $('.task').remove()
-    retrieveTasks = storagedTasks
-    reloadTasks()
+    dataIndexReset()
 });
 
 
