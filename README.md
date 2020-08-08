@@ -17,11 +17,10 @@ The propose of this website is to add and manage tasks to increase personal prod
  - Delete tasks.
  - Change theme color preference.
  - All data, preferences and changes is stored in Local Storage of the browser.
- - An achievement system helps the user understand the app.
+ - An achievement system helps the user understand the app and encourage further progress.
  
 #### Features Left to Implement
  - Add a calendar API to track and trace tasks. 
- - Add more levels for the achievements system.
 
 ## Technologies Used
 
