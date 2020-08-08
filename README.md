@@ -2,28 +2,30 @@
 
 > Top Up Your Productivity.
 
-This is a proyect for personal tasks management
+The propose of this website is to add and manage tasks to increase personal productivity.
 
 <img src="/assets/img/screenshot1.jpeg" width="200"> <img src="/assets/img/screenshot2.jpeg" width="200"> <img src="/assets/img/screenshot3.jpeg" width="200"> <img src="/assets/img/screenshot4.jpeg" width="200">
  
 ---
 
-## UX
- 
-The propose of this website is to add and manage tasks to increase personal productivity.
-
 ## Features
 
-The website has five main features:
- - 
+#### The website has seven main features:
+ - Add new tasks.
+ - Edit tasks.
+ - Mark tasks as completed.
+ - Delete tasks.
+ - Change theme color preference.
+ - All data, preferences and changes is stored in Local Storage of the browser.
+ - An achievement system helps the user understand the app.
  
-### Features Left to Implement
+#### Features Left to Implement
  - Add a calendar API to track and trace tasks. 
  - Add more levels for the achievements system.
 
 ## Technologies Used
 
-This website was developed in HTML for markup, CSS for style after designing the some layout with Bootstrap, and Javascript for user interactivity.
+This website was developed in HTML for markup, CSS for style after designing some layout with Bootstrap, and Javascript for user interactivity.
 
 Additionally, the next technologies were used:
 
@@ -47,7 +49,13 @@ The devices that this site was test were:
 - Desktop PC, 27"
 - Tablet was tested with Chrome developer tools.
 
-Several User Tests were made throughout the project. 
+#### Several User Tests were made throughout the project: 
+
+- The user is presented with an input with a plus sign and 3 buttons on the bottom of the page (Home, Game, Theme). When a task is added each one had a button to edit, check and delete. At this stage the footer has no functionality. The Game button was changed to a trophy for better UX.
+- Again the user is presented with an input with a plus sign and 3 buttons on the bottom of the page. After edit function is added, an user inform that this input to edit the task appears empty and not with the text of the chosen task. This is now fixed.
+- The trophy system is now added; add, complete, edit and delete; the first time the user does one of this actions a trophy is awarded. The 3 buttons of the footer contains Home, Trophies and Theme. In one test a user point out that in mobile the trophy section overlaps with the footer. This is now fixed.
+- Theme buttom added for color selection. The user now can choose between light mode or dark mode.
+- Minor changes were made for better UX throughout the development, according to user tests. Such as, light theme color changed from orange to light blue, character input limit removed, added an opaque overlay to the footer, changes in font sizes to adapts to smaller divices.
 
 ## Contributing
 
@@ -83,7 +91,7 @@ For deployment follow this steps:
 - To [Font Awesome](https://fontawesome.com/)
 
 
-### Acknowledgements
+#### Acknowledgements
 
  I received inspiration for this project from:
 
