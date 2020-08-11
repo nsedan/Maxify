@@ -18,6 +18,7 @@ $(document).ready(function () { /* users theme prefence*/
     } else {
         lightThemeStyle()
     }
+    firstTimeEnter()
     storagedTasks = retrieveTasks
     completedTrophies = retrieveTrophies
     localStorage.setItem('completedTrophies', JSON.stringify(completedTrophies));
@@ -49,7 +50,7 @@ function reloadTasks() { /* saved tasks will load on refresh*/
             <p>${task.text}</p></div><div class="input-group-append"><span class="input-group-text input-group-text-dark">
             <i class="fa fa-edit"></i></span><span class="input-group-text input-group-text-dark">
             <i class="fa fa-trash"></i></span></div></div></div>`
-        
+
         if ($('#theme').hasClass('light-background')) { taskDivBlock = taskBlockLight }
         else { taskDivBlock = taskBlockDark }
         $('.task-list').append(taskDivBlock)
@@ -83,6 +84,18 @@ function dataIndexReset() { /* after deleting or adding a task data-index of tas
     $('.task').remove()
     retrieveTasks = storagedTasks
     reloadTasks()
+}
+
+let firstTime = localStorage.getItem('intro')
+const popUpIntro = `<div class="pop-up-intro"><p class="pop-up-close">x</p><h3>Welcome to Maxify!</h3>
+<h6>The propose of this app is to manage tasks to increase personal productivity</h6><h5>Here you can:</h5>
+<ul><li>Add new tasks</li><li>Edit tasks</li><li>Mark tasks as finished</li><li>Delete tasks</li><li>Change to dark mode</li></ul></div>`
+
+let firstTimeEnter = () => {
+    if (!firstTime) {
+        $('header').append(popUpIntro)
+        localStorage.setItem('intro', true);
+    }
 }
 
 //ADD TASKS
@@ -244,7 +257,7 @@ function onEdit($task, $overlay) { /* edit task function*/
 }
 
 //ACHIEVMENTS
-const popupRemove = () => $('.pop-up-trophy').remove()
+const popupRemove = () => { $('.pop-up-trophy').remove(); $('.pop-up-intro').hide() }
 
 $(document).on('click', '.fa-trophy', () => {
     $('.tasks-main').hide()
@@ -385,6 +398,7 @@ let finishedTasks_10n20 = () => { // trophies for 10 and 20 tasks completed
 }
 //close popup after a trophy is awarded
 $(document).on('click', '.pop-up-close', () => { $('.pop-up-trophy').hide() })
+$(document).on('click', '.pop-up-close', () => { $('.pop-up-intro').hide() })
 
 // THEME CHANGE
 const darkThemeStyle = () => {
@@ -396,6 +410,7 @@ const darkThemeStyle = () => {
     $('.task-text').addClass('task-text-dark')
     $('.fa-check').addClass('fa-check-dark')
     $('.pop-up-trophy').addClass('pop-up-trophy-dark')
+    $('.pop-up-intro').addClass('pop-up-intro-dark')
     $('.trophy-div').addClass('trophy-div-dark')
 }
 
@@ -408,6 +423,7 @@ const lightThemeStyle = () => {
     $('.task-text').removeClass('task-text-dark')
     $('.fa-check').removeClass('fa-check-dark')
     $('.pop-up-trophy').removeClass('pop-up-trophy-dark')
+    $('.pop-up-intro').removeClass('pop-up-intro-dark')
     $('.trophy-div').removeClass('trophy-div-dark')
 }
 
@@ -415,7 +431,6 @@ $(document).on('click', '.fa-adjust', () => { /*change theme preference function
     if ($('#theme').hasClass('light-background')) {
         darkThemeStyle()
         localStorage.setItem('theme', 'dark')
-
     } else {
         lightThemeStyle()
         localStorage.setItem('theme', 'light')

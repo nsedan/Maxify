@@ -275,7 +275,7 @@ i.fa-check-dark:hover {
   color: #fafafa;
 }
 
-.pop-up-trophy {
+.pop-up-trophy, .pop-up-intro {
   padding: 1rem;
   background-color: rgb(86, 131, 253);
   color: #fafafa;
@@ -286,7 +286,7 @@ i.fa-check-dark:hover {
   text-align: center;
 }
 
-.pop-up-trophy p {
+.pop-up-trophy p, .pop-up-intro p {
   position: absolute;
   cursor: pointer;
   font-weight: 600;
@@ -304,7 +304,7 @@ i.fa-check-dark:hover {
   border-radius: 0.25rem;
 }
 
-.pop-up-trophy-dark {
+.pop-up-trophy-dark, .pop-up-intro-dark {
   padding: 1rem;
   background-color: rgb(80, 80, 80);
   color: #fafafa;
@@ -313,4 +313,8 @@ i.fa-check-dark:hover {
   margin: auto;
   margin-top: 2rem;
   text-align: center;
+}
+
+.pop-up-intro ul{
+  font-size: small;
 }
