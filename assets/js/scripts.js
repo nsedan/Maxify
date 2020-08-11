@@ -1,5 +1,5 @@
 let index = 0;
-
+let taskDivBlock;
 let storagedTasks = [];
 let retrieveTasks = JSON.parse(localStorage.getItem('storagedTasks')) || [];
 
@@ -26,6 +26,16 @@ $(document).ready(function () { /* users theme prefence*/
     finishedTasks = retrieveFinishedTasks
 })
 
+function completedTask(task, lsIndex) {
+    $('.task').each(function () {
+        if (task.completed === true) {
+            if ($(this).data('index') === lsIndex) {
+                $(this).find('.fa-check').removeClass('off').addClass('on');
+            }
+        }
+    });
+}
+
 function reloadTasks() { /* saved tasks will load on refresh*/
     for (const [lsIndex, task] of retrieveTasks.entries()) {
         let taskBlockLight = `<div class="task" data-index="${lsIndex}"><div class="input-group">
@@ -39,19 +49,11 @@ function reloadTasks() { /* saved tasks will load on refresh*/
             <p>${task.text}</p></div><div class="input-group-append"><span class="input-group-text input-group-text-dark">
             <i class="fa fa-edit"></i></span><span class="input-group-text input-group-text-dark">
             <i class="fa fa-trash"></i></span></div></div></div>`
-        function completedTask() {
-            $('.task').each(function () {
-                if (task.completed === true) {
-                    if ($(this).data('index') === lsIndex) {
-                        $(this).find('.fa-check').removeClass('off').addClass('on');
-                    }
-                }
-            });
-        }
+        
         if ($('#theme').hasClass('light-background')) { taskDivBlock = taskBlockLight }
         else { taskDivBlock = taskBlockDark }
         $('.task-list').append(taskDivBlock)
-        completedTask()
+        completedTask(task, lsIndex)
         index++
     }
 }
@@ -98,13 +100,13 @@ function taskBlock() {
         <p>${newTaskText}</p></div><div class="input-group-append"><span class="input-group-text input-group-text-dark">
         <i class="fa fa-edit"></i></span><span class="input-group-text input-group-text-dark">
         <i class="fa fa-trash"></i></span></div></div></div>`
-    let pushTaskToLS = storagedTasks.push({ text: newTaskText, completed: false });
+    let pushTaskToLS = () => storagedTasks.push({ text: newTaskText, completed: false });
 
     if ($('#theme').hasClass('light-background')) { taskDivBlock = taskBlockLight }
     else { taskDivBlock = taskBlockDark }
 
     $('.task-list').append(taskDivBlock)
-    pushTaskToLS
+    pushTaskToLS()
     localStorage.setItem('storagedTasks', JSON.stringify(storagedTasks));
     dataIndexReset()
 
@@ -169,7 +171,7 @@ $(document).on('click', '.fa-check', function () {
     const dataIndex = $task.data("index")
     if ($(this).hasClass('off')) {
         $(this).removeClass('off').addClass('on');
-        for ([lsIndex, task] of retrieveTasks.entries()) {
+        for (let [lsIndex, task] of retrieveTasks.entries()) {
             if (lsIndex === dataIndex) {
                 task.text = text
                 task.completed = true
@@ -182,7 +184,7 @@ $(document).on('click', '.fa-check', function () {
         }
     } else {
         $(this).removeClass('on').addClass('off')
-        for ([lsIndex, task] of retrieveTasks.entries()) {
+        for (let [lsIndex, task] of retrieveTasks.entries()) {
             if (lsIndex === dataIndex) {
                 task.text = text
                 task.completed = false

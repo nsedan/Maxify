@@ -29,16 +29,21 @@ This website was developed in HTML for markup, CSS for style after designing som
 Additionally, the next technologies were used:
 
 - [JQuery](https://jquery.com)
-    - The project uses **JQuery** to simplify DOM manipulation.
+    - This project uses **JQuery** to simplify DOM manipulation.
 
 - [Bootstrap](https://getbootstrap.com/)
-    - I used **Bootstrap** to style layout and elements.
+    - This project uses **Bootstrap** to style layout and elements.
+
 
 ## Testing
 
-All user testing has been with the hosted website in the GitHub platform. The objective was to test the responsiveness of the site, mainly to check how the different devices adapt to the changes in the layout.
+All user testing has been with the hosted website in the GitHub platform. The main objective was to test the funcionality of the app and how local storage works. Also some tests were made to check the responsiveness of the site, mainly on how the different devices adapt to the changes in the layout. 
 
-The devices that this site was test were:
+#### Code Validation
+
+For code validation [w3 Validation Service](https://w3.org/) was used for HTML and CSS. And [JSHint](https://jshint.com/) for JS.
+
+#### The devices that this site was test were:
 
 - Samsung Galaxy S6
 - Samsung Galaxy A50
