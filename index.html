@@ -2,100 +2,102 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Maxify | Top Up Your Productivity</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta property="og:image" content="/assets/img/1.png" />
+	<meta property="og:description" content="Top Up Your Productivity" />
+	<title>Maxify | Top Up Your Productivity</title>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-    <div id="theme" class="light-background">
-        <header>
-            <a href="index.html">
-                <h1 id="maxify">Maxify</h1>
-                <h6 id="slogan">Top Up Your Productivity</h6>
-            </a>
-        </header>
-        
-        <main class="container tasks-main">
-            <!-- NEW TASK-->
-            <div class="input-group new-task">
-                <input type="text" id="main-input" class="form-control" placeholder="New Task" autofocus>
-                <div class="input-group-append">
-                    <span class="input-group-text"><i class="fa fa-plus"></i></span>
-                </div>
-            </div>
-            <!-- /NEW TASK-->
+	<div id="theme" class="light-background">
+		<header>
+			<a href="index.html">
+				<h1 id="maxify">Maxify</h1>
+				<h6 id="slogan">Top Up Your Productivity</h6>
+			</a>
+		</header>
 
-            <!-- TASKS-->
-            <div class="task-list">
-            </div>
-            <!-- /TASKS-->
-        </main>
+		<main class="container tasks-main">
+			<!-- NEW TASK-->
+			<div class="input-group new-task">
+				<input type="text" id="main-input" class="form-control" placeholder="New Task" autofocus>
+				<div class="input-group-append">
+					<span class="input-group-text"><i class="fa fa-plus"></i></span>
+				</div>
+			</div>
+			<!-- /NEW TASK-->
 
-        <!-- ACHIEVEMENT SECTION-->
-        <section class="container trophy-section">
-            <div class="trophy-div">
-                <i class="fa fa-trophy"></i>
-                <h3 id="addTaskTrophy" class="trophy-text">Add a task!</h3>
-            </div>
+			<!-- TASKS-->
+			<div class="task-list">
+			</div>
+			<!-- /TASKS-->
+		</main>
 
-            <div class="trophy-div">
-                <i class="fa fa-trophy"></i>
-                <h3 id="deleteTaskTrophy" class="trophy-text">Delete a task!</h3>
-            </div>
+		<!-- ACHIEVEMENT SECTION-->
+		<section class="container trophy-section">
+			<div class="trophy-div">
+				<i class="fa fa-trophy"></i>
+				<h3 id="addTaskTrophy" class="trophy-text">Add a task!</h3>
+			</div>
 
-            <div class="trophy-div">
-                <i class="fa fa-trophy"></i>
-                <h3 id="finishTaskTrophy" class="trophy-text">Finish a task!</h3>
-            </div>
+			<div class="trophy-div">
+				<i class="fa fa-trophy"></i>
+				<h3 id="deleteTaskTrophy" class="trophy-text">Delete a task!</h3>
+			</div>
 
-            <div class="trophy-div">
-                <i class="fa fa-trophy"></i>
-                <h3 id="editTaskTrophy" class="trophy-text">Edit a task!</h3>
-            </div>
-            
-            <div class="trophy-div">
-                <i class="fa fa-trophy"></i>
-                <h3 id="finish10TasksTrophy" class="trophy-text">Finish 10 tasks!</h3>
-            </div>
+			<div class="trophy-div">
+				<i class="fa fa-trophy"></i>
+				<h3 id="finishTaskTrophy" class="trophy-text">Finish a task!</h3>
+			</div>
 
-            <div class="trophy-div">
-                <i class="fa fa-trophy"></i>
-                <h3 id="finish20TasksTrophy" class="trophy-text">Finish 20 tasks!</h3>
-            </div>
-            
-        </section>
-        <!-- /ACHIEVEMENT SECTION-->
+			<div class="trophy-div">
+				<i class="fa fa-trophy"></i>
+				<h3 id="editTaskTrophy" class="trophy-text">Edit a task!</h3>
+			</div>
 
-        <footer>
-            <div class="links">
-                <ul class="list">
-                    <li class="list-item"><i class="fa fa-home"></i></li>
-                    <li class="list-item"><i class="fa fa-trophy"></i></li>
-                    <li class="list-item"><i class="fa fa-adjust"></i></li>
-                </ul>
-            </div>
-        </footer>
+			<div class="trophy-div">
+				<i class="fa fa-trophy"></i>
+				<h3 id="finish10TasksTrophy" class="trophy-text">Finish 10 tasks!</h3>
+			</div>
 
-    </div>
+			<div class="trophy-div">
+				<i class="fa fa-trophy"></i>
+				<h3 id="finish20TasksTrophy" class="trophy-text">Finish 20 tasks!</h3>
+			</div>
+
+		</section>
+		<!-- /ACHIEVEMENT SECTION-->
+
+		<footer>
+			<div class="links">
+				<ul class="list">
+					<li class="list-item"><i class="fa fa-home"></i></li>
+					<li class="list-item"><i class="fa fa-trophy"></i></li>
+					<li class="list-item"><i class="fa fa-adjust"></i></li>
+				</ul>
+			</div>
+		</footer>
+
+	</div>
 
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-    <script src="assets/js/scripts.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+	</script>
+	<script src="assets/js/scripts.js"></script>
 </body>
 
 </html>
